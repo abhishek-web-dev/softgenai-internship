@@ -197,7 +197,7 @@ export default function Home() {
               </CardContent>
             </Card>
           </div>
-        // </section>
+        </section>
 
                 <section className="py-16 px-4">
           <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-center gap-12">
