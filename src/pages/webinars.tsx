@@ -5,8 +5,33 @@ import { Calendar, Clock, Users, Video, Award, BookOpen } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
+import Image from "next/image";
+import { useState, useEffect } from "react"; 
+
 
 export default function Webinars() {
+  const webinarImages = [
+  "/1st_International_webinar.png",
+  "/1st_national_webinar.png",
+  "/2nd_national_webinar.png",
+  "/3rd_national_webinar.png",
+  "/4th_national_webinar.png",
+  "/5th_national_webinar.png",
+  "/6th_national_webinar.png",
+  "/7th_national_webinar.png",
+  "/8th_national_webinar.png",
+  "/9th_national_webinar.png",
+];
+
+const [currentWebinar, setCurrentWebinar] = useState(0);
+useEffect(() => {
+  const interval = setInterval(() => {
+    setCurrentWebinar((prev) => (prev + 1) % webinarImages.length);
+  }, 4000);
+
+  return () => clearInterval(interval);
+}, []);
+
   const upcomingWebinars = [
     {
       title: "Advanced Research Methodology in Social Sciences",
@@ -18,26 +43,26 @@ export default function Webinars() {
       topics: ["Qualitative Analysis", "Data Collection", "Ethics in Research"],
       status: "Registration Open"
     },
-    {
-      title: "Patent Filing & IPR Protection for Researchers",
-      date: "February 22, 2026",
-      time: "4:00 PM - 6:00 PM IST",
-      speaker: "Dr. Priya Sharma",
-      designation: "IPR Consultant & Patent Attorney",
-      participants: "180+ Registered",
-      topics: ["Patent Process", "Copyright", "Trademark Basics"],
-      status: "Registration Open"
-    },
-    {
-      title: "Publishing in High Impact Journals",
-      date: "March 5, 2026",
-      time: "2:00 PM - 4:00 PM IST",
-      speaker: "Dr. Anil Verma",
-      designation: "Editor, International Journal of Science",
-      participants: "300+ Registered",
-      topics: ["Manuscript Preparation", "Peer Review", "Publication Ethics"],
-      status: "Registration Open"
-    },
+    // {
+    //   title: "Patent Filing & IPR Protection for Researchers",
+    //   date: "February 22, 2026",
+    //   time: "4:00 PM - 6:00 PM IST",
+    //   speaker: "Dr. Priya Sharma",
+    //   designation: "IPR Consultant & Patent Attorney",
+    //   participants: "180+ Registered",
+    //   topics: ["Patent Process", "Copyright", "Trademark Basics"],
+    //   status: "Registration Open"
+    // },
+    // {
+    //   title: "Publishing in High Impact Journals",
+    //   date: "March 5, 2026",
+    //   time: "2:00 PM - 4:00 PM IST",
+    //   speaker: "Dr. Anil Verma",
+    //   designation: "Editor, International Journal of Science",
+    //   participants: "300+ Registered",
+    //   topics: ["Manuscript Preparation", "Peer Review", "Publication Ethics"],
+    //   status: "Registration Open"
+    // },
   ];
 
   const pastWebinars = [
@@ -131,10 +156,13 @@ export default function Webinars() {
               Upcoming Webinars
             </h2>
             
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            <div className="flex justify-center">
+
               {upcomingWebinars.map((webinar, idx) => (
-                <Card key={idx} className="hover:shadow-2xl transition-shadow">
-                  <CardContent className="p-8">
+                <Card key={idx} className="w-full max-w-3xl hover:shadow-2xl transition-shadow">
+
+                  <CardContent className="p-8 flex flex-col h-full">
+
                     <div className="flex items-start justify-between mb-4">
                       <span className="px-4 py-1 bg-green-100 text-green-700 rounded-full text-sm font-semibold">
                         {webinar.status}
@@ -177,7 +205,8 @@ export default function Webinars() {
                       </div>
                     </div>
                     
-                    <Button className="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700">
+                    <Button className="mt-auto w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700">
+
                       Register for Free
                     </Button>
                   </CardContent>
@@ -188,7 +217,7 @@ export default function Webinars() {
         </section>
 
         {/* Past Webinars */}
-        <section className="py-16 px-4 bg-white">
+        {/* <section className="py-16 px-4 bg-white">
           <div className="max-w-7xl mx-auto">
             <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
               Past Webinars - Recordings Available
@@ -231,9 +260,9 @@ export default function Webinars() {
               ))}
             </div>
           </div>
-        </section>
+        </section> */}
 
-        <section className="py-16 px-4">
+        {/* <section className="py-16 px-4">
           <div className="max-w-7xl mx-auto bg-[#FEF8DD]">
             <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
               1st International Webinar
@@ -343,7 +372,48 @@ export default function Webinars() {
             <img src="/9th_national_webinar.png" alt="" 
             className="mx-auto w-full max-w-2xl h-[550px] object-contain rounded-xl shadow-xl mb-5"
             />
+          </div> */}
+
+          <section className="py-16 px-4">
+  <div className="max-w-6xl mx-auto text-center">
+    <h2 className="text-3xl md:text-4xl font-bold mb-12 bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
+      Our National & International Webinars
+    </h2>
+
+    <div className="relative overflow-hidden rounded-2xl shadow-2xl bg-[#FEF8DD] p-4">
+      
+      {/* Slides */}
+      <div
+        className="flex transition-transform duration-700 ease-in-out"
+        style={{ transform: `translateX(-${currentWebinar * 100}%)` }}
+      >
+        {webinarImages.map((img, i) => (
+          <div key={i} className="min-w-full flex justify-center">
+            <img
+              src={img}
+              alt="Webinar"
+              className="w-full max-w-4xl h-[550px] object-contain rounded-xl shadow-xl border border-gray-200 bg-white p-2"
+            />
           </div>
+        ))}
+      </div>
+
+      {/* Dots */}
+      <div className="flex justify-center mt-6 gap-3">
+        {webinarImages.map((_, i) => (
+          <button
+            key={i}
+            onClick={() => setCurrentWebinar(i)}
+            className={`w-3 h-3 rounded-full transition-all ${
+              currentWebinar === i ? "bg-cyan-500 w-6" : "bg-gray-300"
+            }`}
+          />
+        ))}
+      </div>
+    </div>
+  </div>
+</section>
+
 
 
         {/* CTA Section */}

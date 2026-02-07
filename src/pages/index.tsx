@@ -6,11 +6,13 @@ import { Footer } from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { 
-  BookOpen, 
-  Users, 
-  Award, 
-  CheckCircle2, 
+import React, { useState, useEffect } from "react";
+
+import {
+  BookOpen,
+  Users,
+  Award,
+  CheckCircle2,
   Star,
   Globe,
   Microscope,
@@ -29,63 +31,79 @@ import {
 } from "lucide-react";
 
 export default function Home() {
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  const testimonials = [
+    {
+      name: "Dr. Priya Sharma",
+      role: "Assistant Professor, IIT Delhi",
+      rating: 5,
+      text: "ScientisticEra helped me publish 3 papers in Scopus-indexed journals within 6 months. Their guidance throughout the process was invaluable. Highly recommended for research scholars!"
+    },
+    {
+      name: "Prof. Rajesh Kumar",
+      role: "PhD Guide, Anna University",
+      rating: 5,
+      text: "The PhD guidance program is exceptional. My students received mentorship from industry experts, and their thesis quality improved significantly. Thank you, ScientisticEra!"
+    },
+    {
+      name: "Ms. Anita Desai",
+      role: "Research Scholar, NIT Trichy",
+      rating: 5,
+      text: "I attended their webinar on research methodology and it completely transformed my approach. The practical tips and personalized feedback were game-changers for my work."
+    }
+  ];
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentIndex((prev) => (prev + 1) % testimonials.length);
+    }, 4000);
+
+    return () => clearInterval(interval);
+  }, []);
+
   return (
     <>
-      <SEO 
+      <SEO
         title="ScientisticEra - Premier Research Publication & Academic Services"
         description="Inaugurated by Hon. Shripad Yesso Naik Ji. Leading research publication house with 100+ papers published, 10+ webinars hosted, serving 500+ researchers globally."
       />
       <div className="min-h-screen bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50">
         <Header />
-       
 
-{/* Hero Section */}
-<section className="relative w-full h-[480px] md:h-[520px] flex items-center">
 
-  {/* Background Image */}
-  <img
-    src="/Home_page.png"
-    alt="Scientistic Era Background"
-    className="absolute inset-0 w-full h-full object-cover"
-  />
+        {/* Hero Section */}
+        <section className="relative w-full h-[480px] md:h-[520px] flex items-center">
 
-  {/* Dark Overlay */}
-  <div className="absolute inset-0 bg-black/30"></div>
+          {/* Background Image */}
+          <img
+            src="/Home_page.png"
+            alt="Scientistic Era Background"
+            className="absolute inset-0 w-full h-full object-cover"
+          />
 
-  {/* Content Left Side */}
-  <div className="relative z-10 max-w-7xl mx-auto w-full px-6">
-    <div className="max-w-2xl text-left">
+          {/* Dark Overlay */}
+          <div className="absolute inset-0 bg-black/30"></div>
 
-      <p className="text-xl md:text-4xl font-bold bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent leading-tight">
-        WELCOME TO SCIENTISTIC ERA
-      </p>
+          {/* Content Left Side */}
+          <div className="relative z-10 max-w-7xl mx-auto w-full px-6 mt-10 md:mt-16">
+            <div className="max-w-2xl text-left">
 
-      <h1 className="text-4xl md:text-6xl font-bold text-white leading-tight mb-6">
-        Scientistic Era
-      </h1>
+              <p className="text-xl md:text-4xl font-bold bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent leading-tight">
+                WELCOME TO
+              </p>
 
-      <div className="flex flex-wrap gap-4">
-        <Link href="/about">
-          <Button className="bg-white text-black hover:bg-gray-200 px-8 py-6 text-lg rounded-full">
-            Know More
-          </Button>
-        </Link>
-
-        <Link href="/contact">
-          <Button variant="outline" className="border-white text-white hover:bg-white/10 px-8 py-6 text-lg rounded-full">
-            Contact Now
-          </Button>
-        </Link>
-      </div>
-
-    </div>
-  </div>
-</section>
+              <h1 className="text-4xl md:text-6xl font-bold text-white leading-tight mb-6">
+                <u> Scientistic Era</u>
+              </h1>
+            </div>
+          </div>
+        </section>
 
         {/* Hero Section */}
         <section className="pb-20 px-4 relative overflow-hidden">
           {/* Background Image */}/
-          
+
           <div className="absolute inset-0 z-0">
             <Image
               src="/about1.png"
@@ -97,7 +115,7 @@ export default function Home() {
 
             <div className="absolute inset-0 bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50 opacity-95" />
           </div>
-          
+
           {/* <div className="relative w-full h-[300px] md:h-[300px] mb-5">
            <img src="/Home_page.jpg" alt="" 
            className="w-full h-[480px] object-cover mb-5 mt-0"
@@ -106,17 +124,17 @@ export default function Home() {
 
           <div className="container mx-auto max-w-6xl relative z-10">
             <div className="text-center space-y-6">
-              <Badge className="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-4 py-2 text-sm">
+              {/* <Badge className="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-4 py-2 text-sm">
                 <Award className="w-4 h-4 mr-2 inline" />
                 Inaugurated by Government of India Minister
-              </Badge>
+              </Badge> */}
               <h1 className="text-5xl md:text-7xl font-bold bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent leading-tight">
                 Empowering Research Excellence Worldwide
               </h1>
-              <p className="text-xl md:text-2xl text-gray-700 max-w-3xl mx-auto leading-relaxed font-medium">
+              {/* <p className="text-xl md:text-2xl text-gray-700 max-w-3xl mx-auto leading-relaxed font-medium">
                 India's premier research publication house, dedicated to advancing global knowledge through 
                 ethical publication practices, expert guidance, and comprehensive academic services.
-              </p>
+              </p> */}
               <div className="flex flex-col sm:flex-row gap-4 justify-center pt-6">
                 <Link href="/services">
                   <Button size="lg" className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-8 py-6 text-lg">
@@ -153,7 +171,7 @@ export default function Home() {
         </section>
 
         {/* Inauguration Highlight Section */}
-        <section className="py-16 px-4 bg-gradient-to-r from-cyan-500 via-blue-500 to-teal-500">
+        {/* <section className="py-16 px-4 bg-gradient-to-r from-cyan-500 via-blue-500 to-teal-500">
           <div className="container mx-auto max-w-5xl">
             <Card className="border-2 border-cyan-300 shadow-2xl bg-white/95 backdrop-blur">
               <CardContent className="p-8 md:p-12">
@@ -197,9 +215,9 @@ export default function Home() {
               </CardContent>
             </Card>
           </div>
-        </section>
+        </section> */}
 
-                <section className="py-16 px-4">
+        <section className="py-16 px-4 bg-[#B0D9E7]">
           <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-center gap-12">
 
             {/* Left Image */}
@@ -215,7 +233,7 @@ export default function Home() {
 
             {/* Right Content */}
             <div className="md:w-1/2 w-full text-center md:text-left">
-              <h1 className="text-4xl md:text-6xl font-bold bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent mb-6 leading-tight">
+              <h1 className="text-4xl md:text-6xl font-bold text-[#072F4A] mb-4 leading-tight">
                 Webinar, Journal, Academician & Researcher Awards and E-Magazine
               </h1>
 
@@ -223,7 +241,7 @@ export default function Home() {
                 Inaugurated by “Honourable Shripad Yesso Naik Ji” Minister of State for New & Renewable Energy, Government of India
               </p>
 
-              <p className="text-gray-700 leading-relaxed text-lg">
+              <p className="text-dark-700 leading-relaxed text-lg">
                 Scientistic Era is a prominent platform that supports global academic and research excellence through its key services. It offers Webinars for real-time knowledge sharing, hosts Academician & Researcher Awards to recognize outstanding achievements, and publishes an E-Magazine to disseminate the latest research and insights. These services foster collaboration, celebrate innovation, and help connect the academic community worldwide.
               </p>
             </div>
@@ -420,7 +438,7 @@ export default function Home() {
             <div className="absolute top-10 left-10 w-72 h-72 bg-white rounded-full blur-3xl"></div>
             <div className="absolute bottom-10 right-10 w-96 h-96 bg-cyan-300 rounded-full blur-3xl"></div>
           </div>
-          
+
           <div className="container mx-auto max-w-6xl relative z-10">
             <div className="text-center mb-16">
               <Badge className="bg-white/20 backdrop-blur text-white border-white/30 px-4 py-2 text-sm mb-4">
@@ -754,53 +772,88 @@ export default function Home() {
                 Dedicated professionals committed to your research success
               </p>
             </div>
-            
-            <div className="grid md:grid-cols-3 gap-8 mb-12">
-              <Card className="p-8 bg-white/10 backdrop-blur border-2 border-white/20 hover:border-blue-400 transition-all">
-                <div className="w-24 h-24 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full mx-auto mb-6 flex items-center justify-center">
-                  <User className="w-12 h-12 text-white" />
+
+            <div className="grid md:grid-cols-3 gap-8 mb-12 justify-items-center">
+              <Card className="overflow-hidden border-2 border-white/20 hover:border-blue-400 transition-all w-[320px]">
+                <div className="relative">
+                  <img
+                    src="/Team_01.png"
+                    alt="Dr. Sudhanshu Kumar Jha"
+                    className="w-full h-[450px] object-cover"
+                  />
+
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
+
+                  <div className="absolute bottom-0 p-4 text-white w-full text-center">
+                    <h3 className="text-xl font-bold">Dr. Sudhanshu Kumar Jha</h3>
+                    <p className="text-blue-300 mb-1">Founder & Director</p>
+                    <p className="text-sm">
+                      Visionary leader with extensive experience in academic research and publication
+                    </p>
+                  </div>
                 </div>
-                <h3 className="text-xl font-bold mb-2 text-center">Dr. Sudhanshu Kumar Jha</h3>
-                <p className="text-blue-400 text-center mb-3">Founder & Director</p>
-                <p className="text-gray-300 text-center text-sm">
-                  Visionary leader with extensive experience in academic research and publication
-                </p>
               </Card>
 
-              <Card className="p-8 bg-white/10 backdrop-blur border-2 border-white/20 hover:border-blue-400 transition-all">
-                <div className="w-24 h-24 bg-gradient-to-br from-purple-500 to-pink-600 rounded-full mx-auto mb-6 flex items-center justify-center">
-                  <User className="w-12 h-12 text-white" />
+
+              <Card className="overflow-hidden border-2 border-white/20 hover:border-blue-400 transition-all w-[320px]">
+                <div className="relative">
+                  <img
+                    src=""
+                    alt="Ms. Mansi Negi"
+                    className="w-full h-[450px] object-cover"
+                  />
+
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
+
+                  <div className="absolute bottom-0 p-4 text-white w-full text-center">
+                    <h3 className="text-xl font-bold">Ms. Mansi Negi</h3>
+                    <p className="text-blue-300 mb-1">Co-Founder & Head BD</p>
+                    <p className="text-sm">
+                      Strategic business development leader driving partnerships and growth
+                    </p>
+                  </div>
                 </div>
-                <h3 className="text-xl font-bold mb-2 text-center">Ms. Mansi Negi</h3>
-                <p className="text-blue-400 text-center mb-3">Co-Founder & Head BD</p>
-                <p className="text-gray-300 text-center text-sm">
-                  Strategic business development leader driving partnerships and growth
-                </p>
               </Card>
 
-              <Card className="p-8 bg-white/10 backdrop-blur border-2 border-white/20 hover:border-blue-400 transition-all">
-                <div className="w-24 h-24 bg-gradient-to-br from-green-500 to-teal-600 rounded-full mx-auto mb-6 flex items-center justify-center">
-                  <User className="w-12 h-12 text-white" />
+              <Card className="overflow-hidden border-2 border-white/20 hover:border-blue-400 transition-all w-[320px]">
+                <div className="relative">
+                  <img
+                    src="/vishwajeet.png"
+                    alt="Mr. Vishwajeet"
+                    className="w-full h-[450px] object-cover"
+                  />
+
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
+
+                  <div className="absolute bottom-0 p-4 text-white w-full text-center">
+                    <h3 className="text-xl font-bold">Mr. Vishwajeet</h3>
+                    <p className="text-blue-300 mb-1">Chief Technology Officer</p>
+                    <p className="text-sm">
+                      Technology innovator transforming research processes through digital solutions
+                    </p>
+                  </div>
                 </div>
-                <h3 className="text-xl font-bold mb-2 text-center">Mr. Vishwajeet</h3>
-                <p className="text-blue-400 text-center mb-3">Chief Technology Officer</p>
-                <p className="text-gray-300 text-center text-sm">
-                  Technology innovator transforming research processes through digital solutions
-                </p>
               </Card>
             </div>
 
-            <div className="grid md:grid-cols-3 gap-8">
-              <Card className="p-8 bg-white/10 backdrop-blur border-2 border-white/20 hover:border-blue-400 transition-all">
-                <div className="w-24 h-24 bg-gradient-to-br from-orange-500 to-red-600 rounded-full mx-auto mb-6 flex items-center justify-center">
-                  <User className="w-12 h-12 text-white" />
+            {/* <div className="grid md:grid-cols-3 gap-8">
+                            <Card className="relative p-8 overflow-hidden border-2 border-white/20 hover:border-blue-400 transition-all h-[450px] flex flex-col justify-end">
+                <Image
+                  src="/jaydeep.png"
+                  alt="Background"
+                  fill
+                  className="object-obtain"
+                />
+                <div className="absolute inset-0 bg-black/40" />
+                <div className="relative z-10 text-white">
+                  <h3 className="text-xl font-bold mb-2 text-center">Mr. Jaydeep S. Baghel</h3>
+                  <p className="text-blue-300 text-center mb-3">Research Head Operations</p>
+                  <p className="text-center text-sm">
+                    Operational excellence expert ensuring seamless research project execution
+                  </p>
                 </div>
-                <h3 className="text-xl font-bold mb-2 text-center">Mr. Jaydeep S. Baghel</h3>
-                <p className="text-blue-400 text-center mb-3">Research Head Operations</p>
-                <p className="text-gray-300 text-center text-sm">
-                  Operational excellence expert ensuring seamless research project execution
-                </p>
-              </Card>
+              </Card>      
+
 
               <Card className="p-8 bg-white/10 backdrop-blur border-2 border-white/20 hover:border-blue-400 transition-all">
                 <div className="w-24 h-24 bg-gradient-to-br from-indigo-500 to-blue-600 rounded-full mx-auto mb-6 flex items-center justify-center">
@@ -808,7 +861,7 @@ export default function Home() {
                 </div>
                 <h3 className="text-xl font-bold mb-2 text-center">Ms. Ishika Antil</h3>
                 <p className="text-blue-400 text-center mb-3">Research Specialist (Intern)</p>
-                <p className="text-gray-300 text-center text-sm">
+                <p className="text-dark-300 text-center text-sm">
                   Emerging research talent contributing to innovative research projects
                 </p>
               </Card>
@@ -819,16 +872,18 @@ export default function Home() {
                 </div>
                 <h3 className="text-xl font-bold mb-2 text-center">Ms. Himani Raj</h3>
                 <p className="text-blue-400 text-center mb-3">Research (Intern)</p>
-                <p className="text-gray-300 text-center text-sm">
+                <p className="text-dark-300 text-center text-sm">
                   Dedicated research intern supporting various research initiatives
                 </p>
               </Card>
-            </div>
+            </div> */}
 
             <div className="text-center mt-12">
-              <Button size="lg" className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700">
-                Meet the Full Team
-              </Button>
+              <Link href="/about#team">
+                <Button size="lg" className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700">
+                  Meet the Full Team
+                </Button>
+              </Link>
             </div>
           </div>
         </section>
@@ -891,78 +946,53 @@ export default function Home() {
           </div>
         </section>
 
+
+        {/* ========================== */}
         {/* Testimonials Section */}
         <section className="py-20 bg-gradient-to-br from-gray-50 to-blue-50">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="text-center mb-16">
-              <h2 className="text-4xl font-bold mb-4 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-                What Researchers Say About Us
-              </h2>
-              <p className="text-xl text-gray-700 max-w-3xl mx-auto">
-                Success stories from our community of researchers and academics
-              </p>
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-bold mb-4 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+              What Researchers Say About Us
+            </h2>
+            <p className="text-xl text-gray-700 max-w-3xl mx-auto">
+              Success stories from our community of researchers and academics
+            </p>
+          </div>
+          <div className="relative max-w-3xl mx-auto text-center">
+            <div className="flex items-center justify-center gap-4 mb-4">
+              <div className="w-16 h-16 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center text-white text-2xl font-bold">
+                <Users className="w-8 h-8" />
+              </div>
+
+              <div className="text-left">
+                <h4 className="text-2xl font-bold text-gray-900">
+                  {testimonials[currentIndex].name}
+                </h4>
+                <p className="text-sm text-gray-600">
+                  {testimonials[currentIndex].role}
+                </p>
+              </div>
+
+            </div>
+            <div className="flex justify-center gap-1 mb-4">
+              {[...Array(testimonials[currentIndex].rating)].map((_, i) => (
+                <Star key={i} className="w-5 h-5 text-yellow-400 fill-yellow-400" />
+              ))}
             </div>
 
-            <div className="grid md:grid-cols-3 gap-8">
-              <Card className="bg-white border-2 border-gray-200 p-8 hover:border-purple-400 transition-all hover:shadow-xl">
-                <div className="flex items-center gap-4 mb-6">
-                  <div className="w-16 h-16 rounded-full bg-gradient-to-br from-blue-400 to-purple-600 flex items-center justify-center">
-                    <Users className="w-8 h-8 text-white" />
-                  </div>
-                  <div>
-                    <h4 className="text-lg font-bold text-gray-900">Dr. Priya Sharma</h4>
-                    <p className="text-sm text-gray-600">Assistant Professor, IIT Delhi</p>
-                  </div>
-                </div>
-                <div className="flex gap-1 mb-4">
-                  {[...Array(5)].map((_, i) => (
-                    <Star key={i} className="w-5 h-5 fill-yellow-400 text-yellow-400" />
-                  ))}
-                </div>
-                <p className="text-gray-700 italic">
-                  "ScientisticEra helped me publish 3 papers in Scopus-indexed journals within 6 months. Their guidance throughout the process was invaluable. Highly recommended for research scholars!"
-                </p>
-              </Card>
+            <p className="text-xl md:text-2xl text-gray-600 italic transition-all duration-500">
+              "{testimonials[currentIndex].text}"
+            </p>
 
-              <Card className="bg-white border-2 border-gray-200 p-8 hover:border-purple-400 transition-all hover:shadow-xl">
-                <div className="flex items-center gap-4 mb-6">
-                  <div className="w-16 h-16 rounded-full bg-gradient-to-br from-purple-400 to-pink-600 flex items-center justify-center">
-                    <Users className="w-8 h-8 text-white" />
-                  </div>
-                  <div>
-                    <h4 className="text-lg font-bold text-gray-900">Prof. Rajesh Kumar</h4>
-                    <p className="text-sm text-gray-600">PhD Guide, Anna University</p>
-                  </div>
-                </div>
-                <div className="flex gap-1 mb-4">
-                  {[...Array(5)].map((_, i) => (
-                    <Star key={i} className="w-5 h-5 fill-yellow-400 text-yellow-400" />
-                  ))}
-                </div>
-                <p className="text-gray-700 italic">
-                  "The PhD guidance program is exceptional. My students received mentorship from industry experts, and their thesis quality improved significantly. Thank you, ScientisticEra!"
-                </p>
-              </Card>
-
-              <Card className="bg-white border-2 border-gray-200 p-8 hover:border-purple-400 transition-all hover:shadow-xl">
-                <div className="flex items-center gap-4 mb-6">
-                  <div className="w-16 h-16 rounded-full bg-gradient-to-br from-green-400 to-teal-600 flex items-center justify-center">
-                    <Users className="w-8 h-8 text-white" />
-                  </div>
-                  <div>
-                    <h4 className="text-lg font-bold text-gray-900">Ms. Anita Desai</h4>
-                    <p className="text-sm text-gray-600">Research Scholar, NIT Trichy</p>
-                  </div>
-                </div>
-                <div className="flex gap-1 mb-4">
-                  {[...Array(5)].map((_, i) => (
-                    <Star key={i} className="w-5 h-5 fill-yellow-400 text-yellow-400" />
-                  ))}
-                </div>
-                <p className="text-gray-700 italic">
-                  "I attended their webinar on research methodology and it completely transformed my approach. The practical tips and personalized feedback were game-changers for my work."
-                </p>
-              </Card>
+            <div className="flex justify-center gap-3 mt-6">
+              {testimonials.map((_, i) => (
+                <button
+                  key={i}
+                  onClick={() => setCurrentIndex(i)}
+                  className={`w-4 h-4 rounded-full transition-all ${currentIndex === i ? "bg-cyan-500 scale-110" : "bg-gray-300"
+                    }`}
+                />
+              ))}
             </div>
           </div>
         </section>

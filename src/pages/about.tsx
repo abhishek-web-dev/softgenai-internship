@@ -421,54 +421,79 @@ export default function About() {
         </section>
 
         {/* Team Section */}
-        <section className="py-20">
+        <section className="py-20" id="team">
           <div className="container mx-auto px-4">
             <div className="text-center mb-16">
               <h2 className="text-4xl font-bold mb-4">Our Leadership Team</h2>
-              <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+              <p className="text-xl text-dark-300 max-w-3xl mx-auto">
                 Meet the experts driving innovation in research and publication
               </p>
             </div>
 
-            <div className="grid md:grid-cols-3 gap-8 mb-12">
-              <Card className="p-8 bg-white/10 backdrop-blur border-2 border-white/20 hover:border-blue-400 transition-all">
-                <div className="w-24 h-24 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full mx-auto mb-6 flex items-center justify-center">
-                  <User className="w-12 h-12 text-white" />
-                </div>
-                <h3 className="text-2xl font-bold mb-2 text-center">Dr. Sudhanshu Kumar Jha</h3>
-                <p className="text-blue-400 text-center mb-4">Founder & Director</p>
-                <p className="text-gray-300 text-center">
-                  Visionary leader with extensive experience in academic research and publication.
-                  Pioneering innovative approaches to research dissemination and scholarly communication.
-                </p>
-              </Card>
+            <div className="grid md:grid-cols-3 gap-8 mb-12 justify-items-center">
+                          <Card className="overflow-hidden border-2 border-white/20 hover:border-blue-400 transition-all w-[320px]">
+  <div className="relative">
+    <img
+      src="/Team_01.png"
+      alt="Dr. Sudhanshu Kumar Jha"
+      className="w-full h-[450px] object-cover"
+    />
 
-              <Card className="p-8 bg-white/10 backdrop-blur border-2 border-white/20 hover:border-blue-400 transition-all">
-                <div className="w-24 h-24 bg-gradient-to-br from-purple-500 to-pink-600 rounded-full mx-auto mb-6 flex items-center justify-center">
-                  <User className="w-12 h-12 text-white" />
-                </div>
-                <h3 className="text-2xl font-bold mb-2 text-center">Ms. Mansi Negi</h3>
-                <p className="text-blue-400 text-center mb-4">Co-Founder & Head BD</p>
-                <p className="text-gray-300 text-center">
-                  Strategic business development leader driving partnerships and growth.
-                  Expertise in building collaborative research ecosystems and institutional relationships.
-                </p>
-              </Card>
+    <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
+    
+    <div className="absolute bottom-0 p-4 text-white w-full text-center">
+      <h3 className="text-xl font-bold">Dr. Sudhanshu Kumar Jha</h3>
+      <p className="text-blue-300 mb-1">Founder & Director</p>
+      <p className="text-sm">
+        Visionary leader with extensive experience in academic research and publication
+      </p>
+    </div>
+  </div>
+</Card>
 
-              <Card className="p-8 bg-white/10 backdrop-blur border-2 border-white/20 hover:border-blue-400 transition-all">
-                <div className="w-24 h-24 bg-gradient-to-br from-green-500 to-teal-600 rounded-full mx-auto mb-6 flex items-center justify-center">
-                  <User className="w-12 h-12 text-white" />
-                </div>
-                <h3 className="text-2xl font-bold mb-2 text-center">Mr. Vishwajeet</h3>
-                <p className="text-blue-400 text-center mb-4">Chief Technology Officer (CTO)</p>
-                <p className="text-gray-300 text-center">
-                  Technology innovator transforming research processes through digital solutions.
-                  Leading the development of cutting-edge platforms for research management.
-                </p>
-              </Card>
+
+              <Card className="overflow-hidden border-2 border-white/20 hover:border-blue-400 transition-all w-[320px]">
+  <div className="relative">
+    <img
+      src=""
+      alt="Ms. Mansi Negi"
+      className="w-full h-[450px] object-cover"
+    />
+
+    <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
+    
+    <div className="absolute bottom-0 p-4 text-white w-full text-center">
+      <h3 className="text-xl font-bold">Ms. Mansi Negi</h3>
+      <p className="text-blue-300 mb-1">Co-Founder & Head BD</p>
+      <p className="text-sm">
+        Strategic business development leader driving partnerships and growth   
+      </p>
+    </div>
+  </div>
+</Card>
+
+              <Card className="overflow-hidden border-2 border-white/20 hover:border-blue-400 transition-all w-[320px]">
+  <div className="relative">
+    <img
+      src="/vishwajeet.png"
+      alt="Mr. Vishwajeet"
+      className="w-full h-[450px] object-cover"
+    />
+
+    <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
+    
+    <div className="absolute bottom-0 p-4 text-white w-full text-center">
+      <h3 className="text-xl font-bold">Mr. Vishwajeet</h3>
+      <p className="text-blue-300 mb-1">Chief Technology Officer</p>
+      <p className="text-sm">
+        Technology innovator transforming research processes through digital solutions
+      </p>
+    </div>
+  </div>
+</Card>
             </div>
 
-            <div className="grid md:grid-cols-3 gap-8">
+            {/* <div className="grid md:grid-cols-3 gap-8">
               <Card className="p-8 bg-white/10 backdrop-blur border-2 border-white/20 hover:border-blue-400 transition-all">
                 <div className="w-24 h-24 bg-gradient-to-br from-orange-500 to-red-600 rounded-full mx-auto mb-6 flex items-center justify-center">
                   <User className="w-12 h-12 text-white" />
@@ -504,6 +529,72 @@ export default function About() {
                   Contributing to research documentation and coordination.
                 </p>
               </Card>
+            </div> */}
+
+            <div className="grid md:grid-cols-3 gap-8 mb-12 justify-items-center">
+                          <Card className="overflow-hidden border-2 border-white/20 hover:border-blue-400 transition-all w-[320px]">
+  <div className="relative">
+    <img
+      src="/jaydeep.png"
+      alt="Mr. Jaydeep S. Baghel"
+      className="w-full h-[450px] object-cover"
+    />
+
+    <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
+    
+    <div className="absolute bottom-0 p-4 text-white w-full text-center">
+      <h3 className="text-xl font-bold">Mr. Jaydeep S. Baghel</h3>
+      <p className="text-blue-300 mb-1">Research Head Operations</p>
+      <p className="text-sm">
+         Operational excellence expert ensuring seamless research project execution.
+                  Specialized in research methodology and quality assurance.
+      </p>
+    </div>
+  </div>
+</Card>
+
+
+              <Card className="overflow-hidden border-2 border-white/20 hover:border-blue-400 transition-all w-[320px]">
+  <div className="relative">
+    <img
+      src="/ishika.png"
+      alt="Ms. Ishika Antil"
+      className="w-full h-[450px] object-cover"
+    />
+
+    <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
+    
+    <div className="absolute bottom-0 p-4 text-white w-full text-center">
+      <h3 className="text-xl font-bold">Ms. Ishika Antil</h3>
+      <p className="text-blue-300 mb-1">Research Specialist (Intern)</p>
+      <p className="text-sm">
+       Emerging research talent contributing to innovative research projects.
+                  Supporting data analysis and literature review processes.   
+      </p>
+    </div>
+  </div>
+</Card>
+
+              <Card className="overflow-hidden border-2 border-white/20 hover:border-blue-400 transition-all w-[320px]">
+  <div className="relative">
+    <img
+      src=""
+      alt="Ms. Himani Raj"
+      className="w-full h-[450px] object-cover"
+    />
+
+    <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
+    
+    <div className="absolute bottom-0 p-4 text-white w-full text-center">
+      <h3 className="text-xl font-bold">Ms. Himani Raj</h3>
+      <p className="text-blue-300 mb-1">Research (Intern)</p>
+      <p className="text-sm">
+       Dedicated research intern supporting various research initiatives.
+                  Contributing to research documentation and coordination.
+      </p>
+    </div>
+  </div>
+</Card>
             </div>
           </div>
         </section>

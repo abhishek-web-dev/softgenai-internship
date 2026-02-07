@@ -14,35 +14,35 @@ export default function Gallery() {
 
   const galleryImages = [
     {
-      src: "/uploads/image_cf52013a-d7f5-42e7-bb1c-0b528b9a8689.png",
+      src: "/Gallery-1.jpg",
       alt: "Shripad Naik - Minister Endorsement",
       caption: "Official endorsement by Hon. Shripad Naik Ji"
     },
     {
-      src: "/uploads/image_2fb6d8c1-b96d-4d8c-944a-b5799a9a2429.png",
+      src: "/Gallery-2.jpg",
       alt: "Shripad Naik - Government Support",
       caption: "Government of India recognition"
     },
     {
-      src: "/uploads/image_651cba90-d6bb-434e-b6a1-39c9ca77a25b.png",
+      src: "/Gallery-3.jpg",
       alt: "IJRDPL Journal Certificate",
       caption: "Managing Editor Certificate - IJRDPL Journal"
     },
-    {
-      src: "/uploads/image_b4c7091b-8062-474f-8d85-6318370d811a.png",
-      alt: "Live Webinar Event",
-      caption: "International Webinar on Pharmaceutical Policy"
-    },
-    {
-      src: "/uploads/image_5cea8b1a-3377-4fa4-a127-826fc95ec63d.png",
-      alt: "Nobel Scientist Award",
-      caption: "Dr. Sudhanshu Kumar Jha - Nobel Scientist Award"
-    },
-    {
-      src: "/uploads/image_effd97fd-57b6-44c8-8da9-2b8c24ac49a3.png",
-      alt: "Collaborative National Webinar",
-      caption: "1st Collaborative National Webinar on Advances in Ayurvedic Formulations"
-    },
+    // {
+    //   src: "/uploads/image_b4c7091b-8062-474f-8d85-6318370d811a.png",
+    //   alt: "Live Webinar Event",
+    //   caption: "International Webinar on Pharmaceutical Policy"
+    // },
+    // {
+    //   src: "/uploads/image_5cea8b1a-3377-4fa4-a127-826fc95ec63d.png",
+    //   alt: "Nobel Scientist Award",
+    //   caption: "Dr. Sudhanshu Kumar Jha - Nobel Scientist Award"
+    // },
+    // {
+    //   src: "/uploads/image_effd97fd-57b6-44c8-8da9-2b8c24ac49a3.png",
+    //   alt: "Collaborative National Webinar",
+    //   caption: "1st Collaborative National Webinar on Advances in Ayurvedic Formulations"
+    // },
   ];
 
   const videos = [
@@ -241,7 +241,7 @@ export default function Gallery() {
         </section>
 
                   {/* Image Grid - All Images */}
-                  <div className="max-w-7xl mx-auto">
+                  {/* <div className="max-w-7xl mx-auto">
                     <h3 className="text-2xl font-bold text-center mb-8">All Images</h3>
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                       {galleryImages.map((image, index) => (
@@ -270,9 +270,20 @@ export default function Gallery() {
                         </Card>
                       ))}
                     </div>
-                  </div>
+                  </div> */}
                 </div>
               </TabsContent>
+
+              <section>
+               <h2 className="text-6xl font-bold mb-10 text-center bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+              Here's Some Certification
+            </h2>
+                <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 justify-items-center">
+                  <img src="/Gallery-1.jpg" alt="" className="w-[500px] h-[600px] object-cover rounded-xl shadow-lg" />
+<img src="/Gallery-2.jpg" alt="" className="w-[500px] h-[600px] object-cover rounded-xl shadow-lg" />
+<img src="/Gallery-3.jpg" alt="" className="w-[500px] h-[600px] object-cover rounded-xl shadow-lg" />
+                </div>
+              </section>
 
               {/* Video Gallery Tab */}
               <TabsContent value="videos">

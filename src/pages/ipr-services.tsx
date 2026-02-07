@@ -106,9 +106,9 @@ export default function IPRServices() {
         </section>
 
               <section className="py-16 px-4">         
-            <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
+            {/* <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
               Here's Some Certification of Our IPR Services
-            </h2>   
+            </h2>    */}
             <div className="flex flex-col md:flex-row gap-8 justify-center items-start">        
           <div className="flex-1 bg-[#E4FFF6]">
             <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
