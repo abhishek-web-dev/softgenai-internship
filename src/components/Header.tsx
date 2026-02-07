@@ -22,9 +22,9 @@ export function Header() {
     },
     { name: "Services", href: "/services" },
     { name: "Journals", href: "/journals" },
-    { name: "Medicine", href: "/medicine" },
     { name: "Gallery", href: "/gallery" },
     { name: "Webinars", href: "/webinars" },
+    { name: "Medicine", href: "/medicine" },
     { name: "Contact", href: "/contact" },
   ];
 
