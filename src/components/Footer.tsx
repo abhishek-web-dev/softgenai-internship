@@ -121,12 +121,12 @@ export function Footer() {
                     contact@scientisticera.com
                   </a>
                   <br />
-                  <a
+                  {/* <a
                     href="mailto:support@scientisticera.com"
                     className="text-gray-300 hover:text-blue-400 transition-colors text-sm"
                   >
                     support@scientisticera.com
-                  </a>
+                  </a> */}
                 </div>
               </li>
               <li className="flex items-start space-x-3">

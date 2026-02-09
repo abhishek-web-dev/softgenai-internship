@@ -455,7 +455,7 @@ export default function About() {
               <Card className="overflow-hidden border-2 border-white/20 hover:border-blue-400 transition-all w-[320px]">
   <div className="relative">
     <img
-      src=""
+      src="/manshi.jpeg"
       alt="Ms. Mansi Negi"
       className="w-full h-[450px] object-cover"
     />
@@ -578,7 +578,7 @@ export default function About() {
               <Card className="overflow-hidden border-2 border-white/20 hover:border-blue-400 transition-all w-[320px]">
   <div className="relative">
     <img
-      src=""
+      src="/Himani.png"
       alt="Ms. Himani Raj"
       className="w-full h-[450px] object-cover"
     />

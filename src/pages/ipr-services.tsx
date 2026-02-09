@@ -4,9 +4,30 @@ import { Footer } from "@/components/Footer";
 import { Shield, FileText, Search, Award, BookOpen, CheckCircle, TrendingUp, Users } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import React, { useState, useEffect } from "react";
 import Link from "next/link";
 
 export default function IPRServices() {
+   const certificateSlides = [
+    "/Ipr_service_01.png",
+    "/Ipr_service_02.png",
+    "/Ipr_service_03.png",
+    "/Ipr_service_04.png",
+    "/Ipr_service_05.png",
+    "/Ipr_service_06.png",
+    "/Ipr_service_07.png",
+    "/Ipr_service_08.png"
+  ];
+  
+  const [currentCertSlide, setCurrentCertSlide] = useState(0);
+  
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentCertSlide((prev) => (prev + 1) % certificateSlides.length);
+    }, 4000);
+  
+    return () => clearInterval(interval);
+  }, []);
   const iprServices = [
     {
       icon: Shield,
@@ -105,10 +126,10 @@ export default function IPRServices() {
           </div>
         </section>
 
-              <section className="py-16 px-4">         
-            {/* <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
+              {/* <section className="py-16 px-4">         
+            <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
               Here's Some Certification of Our IPR Services
-            </h2>    */}
+            </h2>   
             <div className="flex flex-col md:flex-row gap-8 justify-center items-start">        
           <div className="flex-1 bg-[#E4FFF6]">
             <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
@@ -128,9 +149,9 @@ export default function IPRServices() {
             />
           </div>          
           </div>          
-        </section>
+        </section> */}
 
-        <section className="py-16 px-4">         
+        {/* <section className="py-16 px-4">         
                       <div className="flex flex-col md:flex-row gap-8 justify-center items-start">        
           <div className="flex-1 bg-[#E4FFF6]">
             <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
@@ -150,9 +171,9 @@ export default function IPRServices() {
             />
           </div>          
           </div>          
-        </section>
+        </section> */}
 
-        <section className="py-16 px-4">         
+        {/* <section className="py-16 px-4">         
                       <div className="flex flex-col md:flex-row gap-8 justify-center items-start">        
           <div className="flex-1 bg-[#E4FFF6]">
             <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
@@ -172,9 +193,9 @@ export default function IPRServices() {
             />
           </div>          
           </div>          
-        </section>
+        </section> */}
 
-        <section className="py-16 px-4">         
+        {/* <section className="py-16 px-4">         
                       <div className="flex flex-col md:flex-row gap-8 justify-center items-start">        
           <div className="flex-1 bg-[#E4FFF6]">
             <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
@@ -194,7 +215,43 @@ export default function IPRServices() {
             />
           </div>          
           </div>          
-        </section>
+        </section> */}
+
+        <section className="py-16 px-4">
+  <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
+    Here's Some Certification of Our IPR Services
+  </h2>
+
+  <div className="relative w-full max-w-7xl mx-auto h-[600px]">
+    
+    {certificateSlides.map((src, index) => (
+      <img
+        key={index}
+        src={src}
+        className={`absolute w-full h-full object-contain bg-[#E4FFF6] p-6 rounded-xl shadow-xl transition-opacity duration-1000 ${
+          index === currentCertSlide ? "opacity-100" : "opacity-0"
+        }`}
+      />
+    ))}
+
+    
+  </div>
+  <div className="flex justify-center gap-3 mt-6">
+  {certificateSlides.map((_, index) => (
+    <button
+      key={index}
+      onClick={() => setCurrentCertSlide(index)}
+      className={`w-5 h-5 rounded-full transition-all duration-300 ${
+        currentCertSlide === index
+          ? "bg-cyan-500 scale-110"
+          : "bg-gray-300 hover:bg-gray-400"
+      }`}
+    />
+  ))}
+</div>
+
+</section>
+
 
         {/* Services Section */}
         <section className="py-16 px-4 bg-gradient-to-br from-gray-50 to-teal-50">

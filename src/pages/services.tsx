@@ -5,7 +5,7 @@ import { Footer } from "@/components/Footer";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import React, { useState, useEffect } from "react";
+// import React, { useState, useEffect } from "react";
 import { 
   Video, 
   Trophy, 
@@ -31,26 +31,26 @@ import {
 } from "lucide-react";
 
 export default function Services() {
- const certificateSlides = [
-  "/Ipr_service_01.png",
-  "/Ipr_service_02.png",
-  "/Ipr_service_03.png",
-  "/Ipr_service_04.png",
-  "/Ipr_service_05.png",
-  "/Ipr_service_06.png",
-  "/Ipr_service_07.png",
-  "/Ipr_service_08.png"
-];
+//  const certificateSlides = [
+//   "/Ipr_service_01.png",
+//   "/Ipr_service_02.png",
+//   "/Ipr_service_03.png",
+//   "/Ipr_service_04.png",
+//   "/Ipr_service_05.png",
+//   "/Ipr_service_06.png",
+//   "/Ipr_service_07.png",
+//   "/Ipr_service_08.png"
+// ];
 
-const [currentCertSlide, setCurrentCertSlide] = useState(0);
+// const [currentCertSlide, setCurrentCertSlide] = useState(0);
 
-useEffect(() => {
-  const interval = setInterval(() => {
-    setCurrentCertSlide((prev) => (prev + 1) % certificateSlides.length);
-  }, 4000);
+// useEffect(() => {
+//   const interval = setInterval(() => {
+//     setCurrentCertSlide((prev) => (prev + 1) % certificateSlides.length);
+//   }, 4000);
 
-  return () => clearInterval(interval);
-}, []);
+//   return () => clearInterval(interval);
+// }, []);
 
 
   return (
@@ -740,7 +740,7 @@ useEffect(() => {
           </div>
         </section>
 
-       <section className="py-16 px-4">
+       {/* <section className="py-16 px-4">
   <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
     Here's Some Certification of Our IPR Services
   </h2>
@@ -773,7 +773,7 @@ useEffect(() => {
   ))}
 </div>
 
-</section>
+</section> */}
 
 
         {/* IPR Services */}

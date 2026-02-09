@@ -12,85 +12,30 @@ export default function Gallery() {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isAutoPlaying, setIsAutoPlaying] = useState(true);
 
-  const galleryImages = [
-    {
-      src: "/Gallery-1.jpg",
-      alt: "Shripad Naik - Minister Endorsement",
-      caption: "Official endorsement by Hon. Shripad Naik Ji"
-    },
-    {
-      src: "/Gallery-2.jpg",
-      alt: "Shripad Naik - Government Support",
-      caption: "Government of India recognition"
-    },
-    {
-      src: "/Gallery-3.jpg",
-      alt: "IJRDPL Journal Certificate",
-      caption: "Managing Editor Certificate - IJRDPL Journal"
-    },
-    // {
-    //   src: "/uploads/image_b4c7091b-8062-474f-8d85-6318370d811a.png",
-    //   alt: "Live Webinar Event",
-    //   caption: "International Webinar on Pharmaceutical Policy"
-    // },
-    // {
-    //   src: "/uploads/image_5cea8b1a-3377-4fa4-a127-826fc95ec63d.png",
-    //   alt: "Nobel Scientist Award",
-    //   caption: "Dr. Sudhanshu Kumar Jha - Nobel Scientist Award"
-    // },
-    // {
-    //   src: "/uploads/image_effd97fd-57b6-44c8-8da9-2b8c24ac49a3.png",
-    //   alt: "Collaborative National Webinar",
-    //   caption: "1st Collaborative National Webinar on Advances in Ayurvedic Formulations"
-    // },
+  const certificates = [
+    "/Gallery-1.jpg",
+    "/Gallery-2.jpg",
+    "/Gallery-3.jpg",
   ];
 
-  const videos = [
-    {
-      id: "1",
-      title: "Research Excellence Webinar 2024",
-      thumbnail: "/uploads/image_b4c7091b-8062-474f-8d85-6318370d811a.png",
-      duration: "1:24:30",
-      description: "International webinar on pharmaceutical policy and access to medicines",
-      date: "September 8, 2024"
-    },
-    {
-      id: "2",
-      title: "Publication Workshop",
-      thumbnail: "/uploads/image_5cea8b1a-3377-4fa4-a127-826fc95ec63d.png",
-      duration: "45:20",
-      description: "How to publish in high-impact journals",
-      date: "August 15, 2024"
-    },
-    {
-      id: "3",
-      title: "Government Recognition Ceremony",
-      thumbnail: "/uploads/image_2fb6d8c1-b96d-4d8c-944a-b5799a9a2429.png",
-      duration: "32:15",
-      description: "Official inauguration by Hon. Minister",
-      date: "July 20, 2024"
-    },
-  ];
 
   useEffect(() => {
-    if (!isAutoPlaying) return;
-    
     const interval = setInterval(() => {
-      setCurrentSlide((prev) => (prev + 1) % galleryImages.length);
-    }, 4000);
+      setCurrentSlide((prev) => (prev + 1) % certificates.length);
+    }, 4000); // 4 sec per slide
 
     return () => clearInterval(interval);
-  }, [isAutoPlaying, galleryImages.length]);
+  }, []);
+
 
   const nextSlide = () => {
-    setCurrentSlide((prev) => (prev + 1) % galleryImages.length);
-    setIsAutoPlaying(false);
+    setCurrentSlide((prev) => (prev + 1) % certificates.length);
   };
 
   const prevSlide = () => {
-    setCurrentSlide((prev) => (prev - 1 + galleryImages.length) % galleryImages.length);
-    setIsAutoPlaying(false);
+    setCurrentSlide((prev) => (prev - 1 + certificates.length) % certificates.length);
   };
+
 
   const goToSlide = (index: number) => {
     setCurrentSlide(index);
@@ -99,12 +44,12 @@ export default function Gallery() {
 
   return (
     <>
-      <SEO 
+      <SEO
         title="Gallery - ScientisticEra Private Limited"
         description="Explore our image and video gallery showcasing events, conferences, awards, and government recognition at ScientisticEra."
       />
       <Header />
-      
+
       <main className="min-h-screen pt-20">
         {/* Hero Section */}
         <section className="py-20 px-4 bg-gradient-to-br from-blue-600 via-purple-600 to-pink-600 text-white">
@@ -151,8 +96,8 @@ export default function Gallery() {
 
                     <div className="relative">
                       <div className="relative overflow-hidden rounded-2xl shadow-2xl bg-white"> */}
-                        {/* Carousel Slides */}
-                        {/* <div 
+                  {/* Carousel Slides */}
+                  {/* <div 
                           className="flex transition-transform duration-700 ease-out"
                           style={{ transform: `translateX(-${currentSlide * 100}%)` }}
                         >
@@ -181,8 +126,8 @@ export default function Gallery() {
                           ))}
                         </div> */}
 
-                        {/* Navigation Arrows */}
-                        {/* <button
+                  {/* Navigation Arrows */}
+                  {/* <button
                           onClick={prevSlide}
                           className="absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-white/90 hover:bg-white rounded-full shadow-lg flex items-center justify-center transition-all hover:scale-110 z-10"
                           aria-label="Previous image"
@@ -198,8 +143,8 @@ export default function Gallery() {
                           <ChevronRight className="w-6 h-6 text-gray-800" />
                         </button> */}
 
-                        {/* Dots Navigation */}
-                        {/* <div className="absolute bottom-24 left-1/2 -translate-x-1/2 flex space-x-3 z-10">
+                  {/* Dots Navigation */}
+                  {/* <div className="absolute bottom-24 left-1/2 -translate-x-1/2 flex space-x-3 z-10">
                           {galleryImages.map((_, index) => (
                             <button
                               key={index}
@@ -215,8 +160,8 @@ export default function Gallery() {
                         </div>
                       </div> */}
 
-                      {/* Auto-play Control */}
-                      {/* <div className="text-center mt-6">
+                  {/* Auto-play Control */}
+                  {/* <div className="text-center mt-6">
                         <button
                           onClick={() => setIsAutoPlaying(!isAutoPlaying)}
                           className="text-sm text-gray-600 hover:text-gray-800 transition-colors"
@@ -227,18 +172,18 @@ export default function Gallery() {
                     </div>
                   </div> */}
 
-                   <section className="py-16 px-4">
-          <div className="max-w-7xl mx-auto bg-[#FEF8DD]">
-            {/* <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
+                  <section className="py-16 px-4">
+                    <div className="max-w-7xl mx-auto bg-[#FEF8DD]">
+                      {/* <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
               1st International Webinar
             </h2> */}
-            <img src="/Gallery_01.png" alt="" 
-            width={1200}  height={600}
-            // className="mx-auto w-full max-w-4xl rounded-xl shadow-lg border border-gray-300"
-            className="mx-auto w-full h-[750px] max-w-4xl rounded-xl shadow-xl border border-gray-200 bg-white p-2"
-            />
-          </div>
-        </section>
+                      <img src="/Gallery_01.png" alt=""
+                        width={1200} height={600}
+                        // className="mx-auto w-full max-w-4xl rounded-xl shadow-lg border border-gray-300"
+                        className="mx-auto w-full h-[750px] max-w-4xl rounded-xl shadow-xl border border-gray-200 bg-white p-2"
+                      />
+                    </div>
+                  </section>
 
                   {/* Image Grid - All Images */}
                   {/* <div className="max-w-7xl mx-auto">
@@ -272,9 +217,7 @@ export default function Gallery() {
                     </div>
                   </div> */}
                 </div>
-              </TabsContent>
-
-              <section>
+                {/* <section>
                <h2 className="text-6xl font-bold mb-10 text-center bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
               Here's Some Certification
             </h2>
@@ -283,10 +226,72 @@ export default function Gallery() {
 <img src="/Gallery-2.jpg" alt="" className="w-[500px] h-[600px] object-cover rounded-xl shadow-lg" />
 <img src="/Gallery-3.jpg" alt="" className="w-[500px] h-[600px] object-cover rounded-xl shadow-lg" />
                 </div>
-              </section>
+              </section> */}
+
+                <section className="py-20">
+                  <h2 className="text-5xl font-bold mb-12 text-center bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+                    Here's Some Certification
+                  </h2>
+
+                  <div className="relative max-w-5xl mx-auto overflow-hidden rounded-2xl shadow-2xl">
+
+                    {/* Slides */}
+                    <div
+                      className="flex transition-transform duration-700 ease-in-out"
+                      style={{ transform: `translateX(-${currentSlide * 100}%)` }}
+                    >
+                      {certificates.map((img, index) => (
+                        <div key={index} className="min-w-full flex justify-center bg-white p-6">
+                          <img
+                            src={img}
+                            alt="Certificate"
+                            className="h-[600px] object-contain rounded-xl"
+                          />
+                        </div>
+                      ))}
+                    </div>
+
+                    {/* Dots */}
+                    <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-3">
+                      {certificates.map((_, i) => (
+                        <button
+                          key={i}
+                          onClick={() => setCurrentSlide(i)}
+                          className={`w-3 h-3 rounded-full transition-all ${currentSlide === i ? "bg-blue-600 scale-125" : "bg-gray-300"
+                            }`}
+                        />
+                      ))}
+                    </div>
+                  </div>
+                </section>
+
+              </TabsContent>
+
+              <TabsContent value="videos">
+  <div className="text-center py-20">
+    <h1 className="text-5xl md:text-7xl font-bold bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent leading-tight mb-5">
+      Watch Our Videos on YouTube
+    </h1>
+
+    <p className="text-gray-600 text-lg mb-8">
+      Click below to explore webinars, research sessions, and expert talks on our official YouTube channel.
+    </p>
+
+    <a
+      href="https://youtube.com/@scientisticera?si=DHNhgCuJ8Et2AHJh"
+      target="_blank"
+      rel="noopener noreferrer"
+      className="inline-flex items-center gap-3 bg-gradient-to-r from-indigo-600 via-purple-700 to-rose-600 hover:from-indigo-700 hover:via-purple-800 hover:to-rose-700 text-white px-8 py-4 rounded-xl text-lg font-semibold shadow-xl shadow-purple-500/30 transition transform hover:scale-105 backdrop-blur"
+    >
+      ▶ Visit Our YouTube Channel
+    </a>
+  </div>
+</TabsContent>
+
+
 
               {/* Video Gallery Tab */}
-              <TabsContent value="videos">
+              {/* <TabsContent value="videos">
                 <div className="max-w-7xl mx-auto">
                   <div className="text-center mb-12">
                     <h2 className="text-3xl font-bold mb-4 bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
@@ -327,14 +332,14 @@ export default function Gallery() {
                     ))}
                   </div>
                 </div>
-              </TabsContent>
+              </TabsContent> */}
             </Tabs>
           </div>
         </section>
 
         {/* Image Modal */}
         {selectedImage && (
-          <div 
+          <div
             className="fixed inset-0 z-50 bg-black/95 flex items-center justify-center p-4"
             onClick={() => setSelectedImage(null)}
           >
@@ -355,7 +360,7 @@ export default function Gallery() {
           </div>
         )}
       </main>
-      
+
       <Footer />
     </>
   );

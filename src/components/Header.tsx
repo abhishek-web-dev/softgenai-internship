@@ -7,33 +7,66 @@ import Image from "next/image";
 export function Header() {
   const router = useRouter();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [aboutDropdownOpen, setAboutDropdownOpen] = useState(false);
+  // const [aboutDropdownOpen, setAboutDropdownOpen] = useState(false);
+  const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
+
+
+  // const navigation = [
+  //   { name: "Home", href: "/" },
+  //   { 
+  //     name: "About", 
+  //     href: "/about",
+  //     dropdown: [
+  //       { name: "About Us", href: "/about" },
+  //       { name: "IPR Services", href: "/ipr-services" },
+  //       { name: "MOU Partners", href: "/mou-partners" },
+  //     ]
+  //   },
+  //   { name: "Services", href: "/services"},
+  //   { name: "Journals", href: "/journals" },
+  //   { name: "Gallery", href: "/gallery" },
+  //   { name: "Webinars", href: "/webinars" },
+  //   { name: "Medicine", href: "/medicine" },
+  //   { name: "Contact", href: "/contact" },
+  // ];
 
   const navigation = [
-    { name: "Home", href: "/" },
-    { 
-      name: "About", 
-      href: "/about",
-      dropdown: [
-        { name: "About Us", href: "/about" },
-        { name: "IPR Services", href: "/ipr-services" },
-        { name: "MOU Partners", href: "/mou-partners" },
-      ]
-    },
-    { name: "Services", href: "/services" },
-    { name: "Journals", href: "/journals" },
-    { name: "Gallery", href: "/gallery" },
-    { name: "Webinars", href: "/webinars" },
-    { name: "Medicine", href: "/medicine" },
-    { name: "Contact", href: "/contact" },
-  ];
+  { name: "Home", href: "/" },
+  { 
+    name: "About", 
+    href: "/about",
+    dropdown: [
+      { name: "About Us", href: "/about" },
+      { name: "MOU Partners", href: "/mou-partners" },
+    ]
+  },
+  { 
+    name: "Services", 
+    href: "/services",
+    dropdown: [
+      { name: "All Services", href: "/services" },
+      { name: "IPR Services", href: "/ipr-services" },
+    ]
+  },
+  { name: "Journals", href: "/journals" },
+  { name: "Gallery", href: "/gallery" },
+  { name: "Webinars", href: "/webinars" },
+  { name: "Medicine", href: "/medicine" },
+  { name: "Contact", href: "/contact" },
+];
+
 
   const isActive = (path: string) => router.pathname === path;
-  const isAboutActive = () => {
-    return router.pathname === "/about" || 
-           router.pathname === "/ipr-services" || 
-           router.pathname === "/mou-partners";
-  };
+  // const isAboutActive = () => {
+  //   return router.pathname === "/about" || 
+  //          router.pathname === "/ipr-services" || 
+  //          router.pathname === "/mou-partners";
+  // };
+
+  const isDropdownActive = (dropdownItems?: { href: string }[]) => {
+  return dropdownItems?.some(item => item.href === router.pathname);
+};
+
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-sm border-b border-gray-200 shadow-sm">
@@ -65,12 +98,16 @@ export function Header() {
                 <div 
                   key={item.name} 
                   className="relative"
-                  onMouseEnter={() => setAboutDropdownOpen(true)}
-                  onMouseLeave={() => setAboutDropdownOpen(false)}
+                  // onMouseEnter={() => setAboutDropdownOpen(true)}
+                  // onMouseLeave={() => setAboutDropdownOpen(false)}
+
+                  onMouseEnter={() => setActiveDropdown(item.name)}
+onMouseLeave={() => setActiveDropdown(null)}
+
                 >
                   <button
                     className={`px-4 py-2 rounded-lg font-medium transition-all flex items-center space-x-1 ${
-                      isAboutActive()
+                      isDropdownActive(item.dropdown)
                         ? "bg-gradient-to-r from-blue-600 to-purple-600 text-white shadow-lg"
                         : "text-gray-700 hover:bg-gray-100"
                     }`}
@@ -79,7 +116,9 @@ export function Header() {
                     <ChevronDown className="w-4 h-4" />
                   </button>
                   
-                  {aboutDropdownOpen && (
+                  {/* {aboutDropdownOpen && ( */}
+                  {activeDropdown === item.name && (
+
                     <div className="absolute top-full left-0 mt-1 w-48 bg-white rounded-lg shadow-lg border border-gray-200 py-2">
                       {item.dropdown.map((subItem) => (
                         <Link
@@ -134,19 +173,25 @@ export function Header() {
                 <div key={item.name} className="space-y-2">
                   <div
                     className={`px-4 py-3 rounded-lg font-medium transition-all cursor-pointer ${
-                      isAboutActive()
+                      isDropdownActive(item.dropdown)
                         ? "bg-gradient-to-r from-blue-600 to-purple-600 text-white"
                         : "text-gray-700 bg-gray-50"
                     }`}
-                    onClick={() => setAboutDropdownOpen(!aboutDropdownOpen)}
+                    // onClick={() => setAboutDropdownOpen(!aboutDropdownOpen)}
+                      onClick={() => setActiveDropdown(activeDropdown === item.name ? null : item.name)}
+
                   >
                     <div className="flex items-center justify-between">
                       <span>{item.name}</span>
-                      <ChevronDown className={`w-4 h-4 transition-transform ${aboutDropdownOpen ? "rotate-180" : ""}`} />
+                      {/* <ChevronDown className={`w-4 h-4 transition-transform ${aboutDropdownOpen ? "rotate-180" : ""}`} /> */}
+                      <ChevronDown className={`w-4 h-4 transition-transform ${activeDropdown === item.name ? "rotate-180" : ""}`} />
+
                     </div>
                   </div>
                   
-                  {aboutDropdownOpen && (
+                  {/* {aboutDropdownOpen && ( */}
+                  {activeDropdown === item.name && (
+
                     <div className="pl-4 space-y-2">
                       {item.dropdown.map((subItem) => (
                         <Link
