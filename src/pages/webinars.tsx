@@ -1,36 +1,36 @@
 import { SEO } from "@/components/SEO";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
-import { Calendar, Clock, Users, Video, Award, BookOpen } from "lucide-react";
+import { Calendar, Clock, Users, Video, Award, BookOpen , ArrowRight } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import Image from "next/image";
-import { useState, useEffect } from "react"; 
+import { useState, useEffect } from "react";
 
 
 export default function Webinars() {
   const webinarImages = [
-  "/1st_International_webinar.png",
-  "/1st_national_webinar.png",
-  "/2nd_national_webinar.png",
-  "/3rd_national_webinar.png",
-  "/4th_national_webinar.png",
-  "/5th_national_webinar.png",
-  "/6th_national_webinar.png",
-  "/7th_national_webinar.png",
-  "/8th_national_webinar.png",
-  "/9th_national_webinar.png",
-];
+    "/1st_International_webinar.png",
+    "/1st_national_webinar.png",
+    "/2nd_national_webinar.png",
+    "/3rd_national_webinar.png",
+    "/4th_national_webinar.png",
+    "/5th_national_webinar.png",
+    "/6th_national_webinar.png",
+    "/7th_national_webinar.png",
+    "/8th_national_webinar.png",
+    "/9th_national_webinar.png",
+  ];
 
-const [currentWebinar, setCurrentWebinar] = useState(0);
-useEffect(() => {
-  const interval = setInterval(() => {
-    setCurrentWebinar((prev) => (prev + 1) % webinarImages.length);
-  }, 4000);
+  const [currentWebinar, setCurrentWebinar] = useState(0);
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentWebinar((prev) => (prev + 1) % webinarImages.length);
+    }, 4000);
 
-  return () => clearInterval(interval);
-}, []);
+    return () => clearInterval(interval);
+  }, []);
 
   const upcomingWebinars = [
     {
@@ -105,12 +105,12 @@ useEffect(() => {
 
   return (
     <>
-      <SEO 
+      <SEO
         title="Webinars - ScientisticEra Private Limited"
         description="Join our expert-led webinars on research methodology, publication strategies, IPR protection, and academic excellence."
       />
       <Header />
-      
+
       <main className="min-h-screen pt-20">
         {/* Hero Section */}
         <section className="py-20 px-4 bg-gradient-to-br from-indigo-600 via-purple-600 to-pink-600 text-white">
@@ -155,26 +155,61 @@ useEffect(() => {
             <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
               Upcoming Webinars
             </h2>
-            
+
             <div className="flex justify-center">
 
-              {upcomingWebinars.map((webinar, idx) => (
+              {/* <div className="w-full flex justify-center">
+  <img
+    src="/Upcoming_webinar.png"
+    alt="Upcoming Webinar"
+    className="w-[900px] h-[550px] object-contain rounded-xl shadow-xl border border-gray-200 bg-white p-2"
+  />
+</div> */}
+
+              <div className="flex flex-col items-center gap-6">
+
+                <img
+                  src="/Upcoming_webinar.png"
+                  alt="Upcoming Webinar"
+                  className="w-[1100px] h-[650px] object-contain rounded-xl shadow-xl border border-gray-200 bg-white p-2"
+                />
+
+                <Button
+  onClick={() =>
+    window.open("https://forms.gle/WzHLKQEkhTVWWvSy5", "_blank")
+  }
+ size="lg" className=" w-[900px] bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-8 py-6 text-lg"
+>
+  Register for Free
+  <ArrowRight className="w-5 h-5 ml-2" />
+</Button>
+
+
+
+
+
+
+              </div>
+
+
+
+              {/* {upcomingWebinars.map((webinar, idx) => (
                 <Card key={idx} className="w-full max-w-3xl hover:shadow-2xl transition-shadow">
 
-                  <CardContent className="p-8 flex flex-col h-full">
+                  <CardContent className="p-8 flex flex-col h-full"> */}
 
-                    <div className="flex items-start justify-between mb-4">
+              {/* <div className="flex items-start justify-between mb-4">
                       <span className="px-4 py-1 bg-green-100 text-green-700 rounded-full text-sm font-semibold">
                         {webinar.status}
                       </span>
                       <Video className="w-8 h-8 text-purple-600" />
-                    </div>
-                    
-                    <h3 className="text-2xl font-bold text-gray-900 mb-4">
+                    </div> */}
+
+              {/* <h3 className="text-2xl font-bold text-gray-900 mb-4">
                       {webinar.title}
                     </h3>
-                    
-                    <div className="space-y-3 mb-6">
+                     */}
+              {/* <div className="space-y-3 mb-6">
                       <div className="flex items-center text-gray-700">
                         <Calendar className="w-5 h-5 mr-3 text-blue-600" />
                         <span>{webinar.date}</span>
@@ -187,14 +222,14 @@ useEffect(() => {
                         <Users className="w-5 h-5 mr-3 text-blue-600" />
                         <span>{webinar.participants}</span>
                       </div>
-                    </div>
-                    
-                    <div className="bg-gradient-to-r from-blue-50 to-purple-50 rounded-lg p-4 mb-6">
+                    </div> */}
+
+              {/* <div className="bg-gradient-to-r from-blue-50 to-purple-50 rounded-lg p-4 mb-6">
                       <p className="font-semibold text-gray-900 mb-1">{webinar.speaker}</p>
                       <p className="text-sm text-gray-600">{webinar.designation}</p>
-                    </div>
-                    
-                    <div className="mb-6">
+                    </div> */}
+
+              {/* <div className="mb-6">
                       <p className="text-sm font-semibold text-gray-700 mb-2">Topics Covered:</p>
                       <div className="flex flex-wrap gap-2">
                         {webinar.topics.map((topic, topicIdx) => (
@@ -203,15 +238,20 @@ useEffect(() => {
                           </span>
                         ))}
                       </div>
-                    </div>
-                    
-                    <Button className="mt-auto w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700">
+                    </div> */}
 
-                      Register for Free
-                    </Button>
-                  </CardContent>
-                </Card>
-              ))}
+              {/* <Button
+  onClick={() =>
+    window.open("https://forms.gle/WzHLKQEkhTVWWvSy5", "_blank")
+  }
+  className="mt-6 w-[300px] mx-auto block bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700"
+>
+  Register for Free
+</Button> */}
+
+              {/* </CardContent> */}
+              {/* </Card> */}
+              {/* ))} */}
             </div>
           </div>
         </section>
@@ -374,45 +414,44 @@ useEffect(() => {
             />
           </div> */}
 
-          <section className="py-16 px-4">
-  <div className="max-w-6xl mx-auto text-center">
-    <h2 className="text-3xl md:text-4xl font-bold mb-12 bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
-      Our National & International Webinars
-    </h2>
+        <section className="py-16 px-4">
+          <div className="max-w-6xl mx-auto text-center">
+            <h2 className="text-3xl md:text-4xl font-bold mb-12 bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
+              Our National & International Webinars
+            </h2>
 
-    <div className="relative overflow-hidden rounded-2xl shadow-2xl bg-[#FEF8DD] p-4">
-      
-      {/* Slides */}
-      <div
-        className="flex transition-transform duration-700 ease-in-out"
-        style={{ transform: `translateX(-${currentWebinar * 100}%)` }}
-      >
-        {webinarImages.map((img, i) => (
-          <div key={i} className="min-w-full flex justify-center">
-            <img
-              src={img}
-              alt="Webinar"
-              className="w-full max-w-4xl h-[550px] object-contain rounded-xl shadow-xl border border-gray-200 bg-white p-2"
-            />
+            <div className="relative overflow-hidden rounded-2xl shadow-2xl bg-[#FEF8DD] p-4">
+
+              {/* Slides */}
+              <div
+                className="flex transition-transform duration-700 ease-in-out"
+                style={{ transform: `translateX(-${currentWebinar * 100}%)` }}
+              >
+                {webinarImages.map((img, i) => (
+                  <div key={i} className="min-w-full flex justify-center">
+                    <img
+                      src={img}
+                      alt="Webinar"
+                      className="w-full max-w-4xl h-[550px] object-contain rounded-xl shadow-xl border border-gray-200 bg-white p-2"
+                    />
+                  </div>
+                ))}
+              </div>
+
+              {/* Dots */}
+              <div className="flex justify-center mt-6 gap-3">
+                {webinarImages.map((_, i) => (
+                  <button
+                    key={i}
+                    onClick={() => setCurrentWebinar(i)}
+                    className={`w-3 h-3 rounded-full transition-all ${currentWebinar === i ? "bg-cyan-500 w-6" : "bg-gray-300"
+                      }`}
+                  />
+                ))}
+              </div>
+            </div>
           </div>
-        ))}
-      </div>
-
-      {/* Dots */}
-      <div className="flex justify-center mt-6 gap-3">
-        {webinarImages.map((_, i) => (
-          <button
-            key={i}
-            onClick={() => setCurrentWebinar(i)}
-            className={`w-3 h-3 rounded-full transition-all ${
-              currentWebinar === i ? "bg-cyan-500 w-6" : "bg-gray-300"
-            }`}
-          />
-        ))}
-      </div>
-    </div>
-  </div>
-</section>
+        </section>
 
 
 
@@ -433,7 +472,7 @@ useEffect(() => {
           </div>
         </section>
       </main>
-      
+
       <Footer />
     </>
   );

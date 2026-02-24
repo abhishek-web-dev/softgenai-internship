@@ -94,7 +94,7 @@ export default function Home() {
               </p>
 
               <h1 className="text-4xl md:text-6xl font-bold text-white leading-tight mb-6">
-                <u> Scientistic Era</u>
+                Scientistic Era
               </h1>
             </div>
           </div>
@@ -128,27 +128,27 @@ export default function Home() {
                 <Award className="w-4 h-4 mr-2 inline" />
                 Inaugurated by Government of India Minister
               </Badge> */}
-              <h1 className="text-5xl md:text-7xl font-bold bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent leading-tight">
-                Empowering Research Excellence Worldwide
+              <h1 className="text-3xl md:text-5xl font-bold bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent leading-tight">
+                Start Your Research Journey With Expert Guidance
               </h1>
               {/* <p className="text-xl md:text-2xl text-gray-700 max-w-3xl mx-auto leading-relaxed font-medium">
                 India's premier research publication house, dedicated to advancing global knowledge through 
                 ethical publication practices, expert guidance, and comprehensive academic services.
               </p> */}
               <div className="flex flex-col sm:flex-row gap-4 justify-center pt-6">
-                <Link href="/services">
+                <Link href="/contact">
                   <Button size="lg" className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-8 py-6 text-lg">
-                    Explore Services
+                    Book a Free Consultation
                     <ArrowRight className="w-5 h-5 ml-2" />
                   </Button>
                 </Link>
                 <Link href="/contact">
-                  <Button size="lg" variant="outline" className="border-2 border-purple-600 text-purple-600 hover:bg-purple-50 px-8 py-6 text-lg">
-                    Get Started Today
-                  </Button>
+                  {/* <Button size="lg" variant="outline" className="border-2 border-purple-600 text-purple-600 hover:bg-purple-50 px-8 py-6 text-lg">
+                    Book a Free Consultation
+                  </Button> */}
                 </Link>
               </div>
-              <div className="flex flex-wrap justify-center gap-6 pt-8 text-sm text-gray-600">
+              {/* <div className="flex flex-wrap justify-center gap-6 pt-8 text-sm text-gray-600">
                 <div className="flex items-center gap-2">
                   <CheckCircle2 className="w-5 h-5 text-green-600" />
                   <span>ISO Certified</span>
@@ -165,7 +165,7 @@ export default function Home() {
                   <CheckCircle2 className="w-5 h-5 text-green-600" />
                   <span>Global Indexing</span>
                 </div>
-              </div>
+              </div> */}
             </div>
           </div>
         </section>
@@ -324,31 +324,35 @@ export default function Home() {
         <section className="py-20 bg-gradient-to-br from-blue-600 to-purple-600 text-white">
           <div className="container mx-auto max-w-6xl px-4">
             <div className="text-center mb-12">
-              <h2 className="text-3xl md:text-4xl font-bold mb-4">Our Impact in Numbers</h2>
+              <h2 className="text-3xl md:text-4xl font-bold mb-4">Our Impact</h2>
               <p className="text-xl text-blue-100">Driving research excellence across the globe</p>
             </div>
-            <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
-              <div className="text-center space-y-2 bg-white/10 backdrop-blur rounded-2xl p-6 hover:bg-white/20 transition-all">
+            {/* <div className="grid grid-cols-2 lg:grid-cols-4 gap-8"> */}
+            <div className="flex justify-center">
+  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 place-items-center">
+
+              <div className="w-[260px] h-[260px] flex flex-col justify-center items-center text-center bg-white/10 backdrop-blur rounded-2xl p-6 hover:bg-white/20 transition-all">
                 <FileText className="w-12 h-12 mx-auto mb-4 text-blue-200" />
                 <div className="text-5xl font-bold">100+</div>
                 <div className="text-lg text-blue-100">Research Papers Published</div>
               </div>
-              <div className="text-center space-y-2 bg-white/10 backdrop-blur rounded-2xl p-6 hover:bg-white/20 transition-all">
+              <div className="w-[260px] h-[260px] flex flex-col justify-center items-center text-center bg-white/10 backdrop-blur rounded-2xl p-6 hover:bg-white/20 transition-all">
                 <Video className="w-12 h-12 mx-auto mb-4 text-purple-200" />
                 <div className="text-5xl font-bold">10+</div>
                 <div className="text-lg text-purple-100">Webinars Hosted</div>
               </div>
-              <div className="text-center space-y-2 bg-white/10 backdrop-blur rounded-2xl p-6 hover:bg-white/20 transition-all">
+              {/* <div className="text-center space-y-2 bg-white/10 backdrop-blur rounded-2xl p-6 hover:bg-white/20 transition-all">
                 <Sparkles className="w-12 h-12 mx-auto mb-4 text-pink-200" />
                 <div className="text-5xl font-bold">6+</div>
                 <div className="text-lg text-pink-100">Premium Services</div>
-              </div>
-              <div className="text-center space-y-2 bg-white/10 backdrop-blur rounded-2xl p-6 hover:bg-white/20 transition-all">
+              </div> */}
+              <div className="w-[260px] h-[260px] flex flex-col justify-center items-center text-center bg-white/10 backdrop-blur rounded-2xl p-6 hover:bg-white/20 transition-all">
                 <Users className="w-12 h-12 mx-auto mb-4 text-yellow-200" />
                 <div className="text-5xl font-bold">500+</div>
                 <div className="text-lg text-yellow-100">Researchers Served</div>
               </div>
             </div>
+          </div>
           </div>
         </section>
 
@@ -356,11 +360,11 @@ export default function Home() {
         <section className="py-20 px-4">
           <div className="container mx-auto max-w-6xl">
             <div className="text-center mb-16">
-              <Badge className="bg-purple-100 text-purple-700 px-4 py-2 text-sm mb-4">
-                Why ScientisticEra
+              <Badge className="bg-purple-100 text-purple-700 px-4 py-2 text-4xl mb-4">
+                Why us will come 
               </Badge>
               <h2 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-                Your Trusted Research Partner
+                We don’t just assist
               </h2>
               <p className="text-xl text-gray-700 max-w-3xl mx-auto font-medium">
                 We combine government recognition, ethical practices, and expert guidance to accelerate your research journey
@@ -533,7 +537,7 @@ export default function Home() {
         <section className="py-20 px-4 bg-gradient-to-br from-gray-50 to-gray-100">
           <div className="container mx-auto max-w-6xl">
             <div className="text-center mb-16">
-              <Badge className="bg-blue-100 text-blue-700 px-4 py-2 text-sm mb-4">
+              <Badge className="bg-blue-100 text-blue-700 px-4 py-2 text-4xl mb-4">
                 Our Services
               </Badge>
               <h2 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
@@ -764,7 +768,7 @@ export default function Home() {
         </section> */}
 
         {/* Team Preview Section */}
-        <section className="py-20 bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50">
+        {/* <section className="py-20 bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50">
           <div className="container mx-auto px-4">
             <div className="text-center mb-16">
               <h2 className="text-4xl font-bold mb-4 text-gray-900">Meet Our Team</h2>
@@ -836,48 +840,6 @@ export default function Home() {
               </Card>
             </div>
 
-            {/* <div className="grid md:grid-cols-3 gap-8">
-                            <Card className="relative p-8 overflow-hidden border-2 border-white/20 hover:border-blue-400 transition-all h-[450px] flex flex-col justify-end">
-                <Image
-                  src="/jaydeep.png"
-                  alt="Background"
-                  fill
-                  className="object-obtain"
-                />
-                <div className="absolute inset-0 bg-black/40" />
-                <div className="relative z-10 text-white">
-                  <h3 className="text-xl font-bold mb-2 text-center">Mr. Jaydeep S. Baghel</h3>
-                  <p className="text-blue-300 text-center mb-3">Research Head Operations</p>
-                  <p className="text-center text-sm">
-                    Operational excellence expert ensuring seamless research project execution
-                  </p>
-                </div>
-              </Card>      
-
-
-              <Card className="p-8 bg-white/10 backdrop-blur border-2 border-white/20 hover:border-blue-400 transition-all">
-                <div className="w-24 h-24 bg-gradient-to-br from-indigo-500 to-blue-600 rounded-full mx-auto mb-6 flex items-center justify-center">
-                  <User className="w-12 h-12 text-white" />
-                </div>
-                <h3 className="text-xl font-bold mb-2 text-center">Ms. Ishika Antil</h3>
-                <p className="text-blue-400 text-center mb-3">Research Specialist (Intern)</p>
-                <p className="text-dark-300 text-center text-sm">
-                  Emerging research talent contributing to innovative research projects
-                </p>
-              </Card>
-
-              <Card className="p-8 bg-white/10 backdrop-blur border-2 border-white/20 hover:border-blue-400 transition-all">
-                <div className="w-24 h-24 bg-gradient-to-br from-pink-500 to-rose-600 rounded-full mx-auto mb-6 flex items-center justify-center">
-                  <User className="w-12 h-12 text-white" />
-                </div>
-                <h3 className="text-xl font-bold mb-2 text-center">Ms. Himani Raj</h3>
-                <p className="text-blue-400 text-center mb-3">Research (Intern)</p>
-                <p className="text-dark-300 text-center text-sm">
-                  Dedicated research intern supporting various research initiatives
-                </p>
-              </Card>
-            </div> */}
-
             <div className="text-center mt-12">
               <Link href="/about#team">
                 <Button size="lg" className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700">
@@ -886,7 +848,7 @@ export default function Home() {
               </Link>
             </div>
           </div>
-        </section>
+        </section> */}
 
         {/* Latest Updates Section */}
         <section className="py-20 bg-white">

@@ -12,9 +12,9 @@ export function Footer() {
           {/* Company Info */}
           <div className="space-y-4">
             <div className="flex items-center space-x-3">
-              <div className="relative w-16 h-16 rounded-full overflow-hidden ring-2 ring-blue-500/30">
+              <div className="relative w-16 h-16 overflow-hidden ring-2 ring-blue-500/30">
                 <Image
-                  src="/WhatsApp_Image_2026-01-09_at_11.07.43_PM.jpeg"
+                  src="/WhatsApp_Image_2026-01-09_at_11.07.43_PM.png"
                   alt="ScientisticEra Logo"
                   fill
                   className="object-cover"
