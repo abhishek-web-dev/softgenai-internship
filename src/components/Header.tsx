@@ -48,10 +48,10 @@ export function Header() {
         { name: "IPR Services", href: "/ipr-services" },
       ]
     },
-    { name: "Journals", href: "/journals" },
-    { name: "Gallery", href: "/gallery" },
     { name: "Webinars", href: "/webinars" },
-    { name: "Medicine", href: "/medicine" },
+    { name: "Journals", href: "/journals" },
+    { name: "Publications ", href: "/gallery" },    
+    { name: "Pharmaceutics", href: "/medicine" },
     { name: "Contact", href: "/contact" },
   ];
 
@@ -95,7 +95,7 @@ export function Header() {
 
           <Link href="/" className="flex items-center gap-3 mt-2">
   <Image
-    src="/Logo.png"
+    src="/New_Logo.png"
     alt="ScientisticEra Logo"
     width={150}
     height={80}
@@ -104,10 +104,10 @@ export function Header() {
   />
 
   <div className="flex flex-col leading-tight">
-    <span className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+    <span className="text-2xl font-bold text-blue-600">
       ScientisticEra
     </span>
-    <span className="text-sm text-gray-600">Private Limited</span>
+    <span className="text-sm text-gray-600">Pvt Ltd</span>
   </div>
 </Link>
 

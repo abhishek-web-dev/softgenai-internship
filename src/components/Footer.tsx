@@ -8,9 +8,11 @@ export function Footer() {
   return (
     <footer className="bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 text-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-12 gap-8">
+        {/* <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-[2fr_2fr_1fr_1fr_1.2fr] gap-8"> */}
           {/* Company Info */}
-          <div className="space-y-4">
+         
+          <div className="flex flex-col space-y-4 lg:col-span-3">
             <div className="flex items-center space-x-3">
               <div className="relative w-16 h-16 overflow-hidden ring-2 ring-blue-500/30">
                 <Image
@@ -21,10 +23,10 @@ export function Footer() {
                 />
               </div>
               <div>
-                <h3 className="text-xl font-bold bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
+                <h3 className="text-xl font-bold text-blue-600">
                   ScientisticEra
                 </h3>
-                <p className="text-sm text-gray-400">Private Limited</p>
+                <p className="text-m text-white-400">Pvt Ltd</p>
               </div>
             </div>
             <p className="text-gray-300 text-sm leading-relaxed">
@@ -33,7 +35,7 @@ export function Footer() {
             </p>
             <div className="flex space-x-4">
               <a
-                href="https://facebook.com"
+                href="https://www.facebook.com/profile.php?id=61565407943656"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-10 h-10 rounded-full bg-blue-600 hover:bg-blue-700 flex items-center justify-center transition-colors"
@@ -41,7 +43,7 @@ export function Footer() {
                 <Facebook className="w-5 h-5" />
               </a>
               <a
-                href="https://twitter.com"
+                href="https://x.com/Scientisticera"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-10 h-10 rounded-full bg-sky-500 hover:bg-sky-600 flex items-center justify-center transition-colors"
@@ -57,7 +59,7 @@ export function Footer() {
                 <Linkedin className="w-5 h-5" />
               </a>
               <a
-                href="https://instagram.com"
+                href="https://www.instagram.com/scientisticeraofficial/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-10 h-10 rounded-full bg-gradient-to-br from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 flex items-center justify-center transition-colors"
@@ -67,8 +69,32 @@ export function Footer() {
             </div>
           </div>
 
+          {/* Services */}
+          <div className="flex flex-col space-y-4 lg:col-span-2">
+            <h4 className="text-lg font-semibold mb-4 text-white">Our Services</h4>
+            <ul className="space-y-2 text-sm">
+              <li className="text-gray-300">Research Development & Publication Support</li>
+              <li className="text-gray-300">Thesis & Dissertation Consultancy</li>
+              <li className="text-gray-300">Research Mentorship & Methodology Guidance</li>
+              <li className="text-gray-300">IPR & Innovation Support</li>
+              <li className="text-gray-300">Research Training & Scholarly Programs</li>
+            </ul>
+          </div>
+
+          {/* Initiatives */}
+          <div className="flex flex-col space-y-4 lg:col-span-2">
+            <h4 className="text-lg font-semibold mb-4 text-white">Initiatives</h4>
+            <ul className="space-y-2 text-sm">
+              <li className="text-gray-300">Webinar</li>
+              <li className="text-gray-300"> Awards</li>
+              <li className="text-gray-300">E-Magazine </li>
+              <li className="text-gray-300">Journal of Health Synapse</li>
+              <li className="text-gray-300">Scriptoria Publications</li>
+            </ul>
+          </div>
+
           {/* Quick Links */}
-          <div>
+          <div className="flex flex-col space-y-4 lg:col-span-2">
             <h4 className="text-lg font-semibold mb-4 text-white">Quick Links</h4>
             <ul className="space-y-2">
               <li>
@@ -94,21 +120,12 @@ export function Footer() {
             </ul>
           </div>
 
-          {/* Services */}
-          <div>
-            <h4 className="text-lg font-semibold mb-4 text-white">Our Services</h4>
-            <ul className="space-y-2 text-sm">
-              <li className="text-gray-300">Research Paper Publication</li>
-              <li className="text-gray-300">PhD Guidance & Mentorship</li>
-              <li className="text-gray-300">Thesis & Dissertation Support</li>
-              <li className="text-gray-300">Conference Participation</li>
-              <li className="text-gray-300">Webinars & Training</li>
-              <li className="text-gray-300">IPR Services</li>
-            </ul>
-          </div>
+          
 
           {/* Contact Info */}
-          <div>
+          {/* <div> */}
+          {/* <div className="flex flex-col space-y-4"> */}
+          <div className="flex flex-col space-y-4 lg:col-span-2">
             <h4 className="text-lg font-semibold mb-4 text-white">Contact Us</h4>
             <ul className="space-y-3">
               <li className="flex items-start space-x-3">

@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import React, { useState, useEffect } from "react";
+import { useRef } from "react";
 
 import {
   BookOpen,
@@ -62,6 +63,66 @@ export default function Home() {
     return () => clearInterval(interval);
   }, []);
 
+  function Slider() {
+  const sliderRef = useRef(null);
+
+  useEffect(() => {
+    const slider = sliderRef.current;
+    let animationFrame;
+    let position = 0;
+    const speed = 0.5; // lower = slower (smooth feel)
+
+    const animate = () => {
+      position -= speed;
+
+      // when half width crossed → reset (no visible jump)
+      if (Math.abs(position) >= slider.scrollWidth / 2) {
+        position = 0;
+      }
+
+      slider.style.transform = `translateX(${position}px)`;
+      animationFrame = requestAnimationFrame(animate);
+    };
+
+    animationFrame = requestAnimationFrame(animate);
+
+    return () => cancelAnimationFrame(animationFrame);
+  }, []);
+
+  const logos = [
+    "/MOU_05.png",
+    "/MOU_04.png",
+    "/MOU_03.png",
+    "/MOU_02.png",
+    "/MOU_01.png",
+  ];
+
+  return (
+    <div className="relative overflow-hidden">
+
+      <div
+        ref={sliderRef}
+        className="flex gap-10 w-max"
+      >
+        {[...logos, ...logos].map((src, index) => (
+          <div
+  key={index}
+  className="min-w-[240px] h-136 flex items-center justify-center"
+>
+  <img
+    src={src}
+    alt="Startup"
+    className="h-24 object-contain"
+  />
+</div>
+        ))}
+      </div>
+
+    </div>
+  );
+}
+
+
   return (
     <>
       <SEO
@@ -77,7 +138,7 @@ export default function Home() {
 
           {/* Background Image */}
           <img
-            src="/Home_page.png"
+            src="/Home_Page_01.png"
             alt="Scientistic Era Background"
             className="absolute inset-0 w-full h-full object-cover"
           />
@@ -124,17 +185,15 @@ export default function Home() {
 
           <div className="container mx-auto max-w-6xl relative z-10">
             <div className="text-center space-y-6">
-              {/* <Badge className="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-4 py-2 text-sm">
-                <Award className="w-4 h-4 mr-2 inline" />
-                Inaugurated by Government of India Minister
-              </Badge> */}
-              <h1 className="text-3xl md:text-5xl font-bold bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent leading-tight">
-                Start Your Research Journey With Expert Guidance
+              <h1 className="text-3xl md:text-4xl font-bold 
+bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 
+bg-clip-text text-transparent 
+leading-[1.3] pb-2">
+                Advancing Research. Protecting Innovation. Publishing Impact
               </h1>
-              {/* <p className="text-xl md:text-2xl text-gray-700 max-w-3xl mx-auto leading-relaxed font-medium">
-                India's premier research publication house, dedicated to advancing global knowledge through 
-                ethical publication practices, expert guidance, and comprehensive academic services.
-              </p> */}
+              {/* <h1 className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent leading-[1.3]">
+                Advancing Research. Protecting Innovation. Publishing Impact
+              </h1> */}
               <div className="flex flex-col sm:flex-row gap-4 justify-center pt-6">
                 <Link href="/contact">
                   <Button size="lg" className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-8 py-6 text-lg">
@@ -143,29 +202,8 @@ export default function Home() {
                   </Button>
                 </Link>
                 <Link href="/contact">
-                  {/* <Button size="lg" variant="outline" className="border-2 border-purple-600 text-purple-600 hover:bg-purple-50 px-8 py-6 text-lg">
-                    Book a Free Consultation
-                  </Button> */}
                 </Link>
               </div>
-              {/* <div className="flex flex-wrap justify-center gap-6 pt-8 text-sm text-gray-600">
-                <div className="flex items-center gap-2">
-                  <CheckCircle2 className="w-5 h-5 text-green-600" />
-                  <span>ISO Certified</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <CheckCircle2 className="w-5 h-5 text-green-600" />
-                  <span>100% Ethical Publishing</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <CheckCircle2 className="w-5 h-5 text-green-600" />
-                  <span>Expert Peer Review</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <CheckCircle2 className="w-5 h-5 text-green-600" />
-                  <span>Global Indexing</span>
-                </div>
-              </div> */}
             </div>
           </div>
         </section>
@@ -226,7 +264,7 @@ export default function Home() {
                 <img
                   src="/about1.png"
                   alt="Scientistic Era"
-                  className="w-full max-w-md h-[550px] object-cover"
+                  className="w-full max-w-md h-[500px] object-cover"
                 />
               </div>
             </div>
@@ -234,15 +272,17 @@ export default function Home() {
             {/* Right Content */}
             <div className="md:w-1/2 w-full text-center md:text-left">
               <h1 className="text-4xl md:text-6xl font-bold text-[#072F4A] mb-4 leading-tight">
-                Webinar, Journal, Academician & Researcher Awards and E-Magazine
+                Who We Are:
               </h1>
+
+
 
               <p className="font-semibold text-lg mb-4 text-gray-800">
                 Inaugurated by “Honourable Shripad Yesso Naik Ji” Minister of State for New & Renewable Energy, Government of India
               </p>
 
               <p className="text-dark-700 leading-relaxed text-lg">
-                Scientistic Era is a prominent platform that supports global academic and research excellence through its key services. It offers Webinars for real-time knowledge sharing, hosts Academician & Researcher Awards to recognize outstanding achievements, and publishes an E-Magazine to disseminate the latest research and insights. These services foster collaboration, celebrate innovation, and help connect the academic community worldwide.
+                Scientistic Era is a prominent platform that supports global academic and research excellence through its key services. It offers Research writing consultancy, IPR filing assistance, academic publishing, and scholarly knowledge dissemination.With a strong interdisciplinary vision and global outreach, Scientistic Era promotes academic excellence by integrating innovation, research integrity, and real-world impact through expert-led webinars, academic awards, and an insightful E-Magazine empowering the global research community.
               </p>
             </div>
 
@@ -321,47 +361,47 @@ export default function Home() {
 
 
         {/* Stats Section */}
-        <section className="py-20 bg-gradient-to-br from-blue-600 to-purple-600 text-white">
-          <div className="container mx-auto max-w-6xl px-4">
-            <div className="text-center mb-12">
+        {/* <section className="py-20 bg-gradient-to-br from-blue-600 to-purple-600 text-white"> */}
+        {/* <div className="container mx-auto max-w-6xl px-4"> */}
+        {/* <div className="text-center mb-12">
               <h2 className="text-3xl md:text-4xl font-bold mb-4">Our Impact</h2>
               <p className="text-xl text-blue-100">Driving research excellence across the globe</p>
-            </div>
-            {/* <div className="grid grid-cols-2 lg:grid-cols-4 gap-8"> */}
-            <div className="flex justify-center">
-  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 place-items-center">
+            </div> */}
+        {/* <div className="grid grid-cols-2 lg:grid-cols-4 gap-8"> */}
+        {/* <div className="flex justify-center"> */}
+        {/* <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 place-items-center"> */}
 
-              <div className="w-[260px] h-[260px] flex flex-col justify-center items-center text-center bg-white/10 backdrop-blur rounded-2xl p-6 hover:bg-white/20 transition-all">
-                <FileText className="w-12 h-12 mx-auto mb-4 text-blue-200" />
-                <div className="text-5xl font-bold">100+</div>
-                <div className="text-lg text-blue-100">Research Papers Published</div>
-              </div>
-              <div className="w-[260px] h-[260px] flex flex-col justify-center items-center text-center bg-white/10 backdrop-blur rounded-2xl p-6 hover:bg-white/20 transition-all">
-                <Video className="w-12 h-12 mx-auto mb-4 text-purple-200" />
-                <div className="text-5xl font-bold">10+</div>
-                <div className="text-lg text-purple-100">Webinars Hosted</div>
-              </div>
-              {/* <div className="text-center space-y-2 bg-white/10 backdrop-blur rounded-2xl p-6 hover:bg-white/20 transition-all">
+        {/* <div className="w-[260px] h-[260px] flex flex-col justify-center items-center text-center bg-white/10 backdrop-blur rounded-2xl p-6 hover:bg-white/20 transition-all">
+                  <FileText className="w-12 h-12 mx-auto mb-4 text-blue-200" />
+                  <div className="text-5xl font-bold">100+</div>
+                  <div className="text-lg text-blue-100">Research Papers Published</div>
+                </div> */}
+        {/* <div className="w-[260px] h-[260px] flex flex-col justify-center items-center text-center bg-white/10 backdrop-blur rounded-2xl p-6 hover:bg-white/20 transition-all">
+                  <Video className="w-12 h-12 mx-auto mb-4 text-purple-200" />
+                  <div className="text-5xl font-bold">10+</div>
+                  <div className="text-lg text-purple-100">Webinars Hosted</div>
+                </div> */}
+        {/* <div className="text-center space-y-2 bg-white/10 backdrop-blur rounded-2xl p-6 hover:bg-white/20 transition-all">
                 <Sparkles className="w-12 h-12 mx-auto mb-4 text-pink-200" />
                 <div className="text-5xl font-bold">6+</div>
                 <div className="text-lg text-pink-100">Premium Services</div>
               </div> */}
-              <div className="w-[260px] h-[260px] flex flex-col justify-center items-center text-center bg-white/10 backdrop-blur rounded-2xl p-6 hover:bg-white/20 transition-all">
-                <Users className="w-12 h-12 mx-auto mb-4 text-yellow-200" />
-                <div className="text-5xl font-bold">500+</div>
-                <div className="text-lg text-yellow-100">Researchers Served</div>
-              </div>
-            </div>
-          </div>
-          </div>
-        </section>
+        {/* <div className="w-[260px] h-[260px] flex flex-col justify-center items-center text-center bg-white/10 backdrop-blur rounded-2xl p-6 hover:bg-white/20 transition-all">
+                  <Users className="w-12 h-12 mx-auto mb-4 text-yellow-200" />
+                  <div className="text-5xl font-bold">500+</div>
+                  <div className="text-lg text-yellow-100">Researchers Served</div>
+                </div> */}
+        {/* </div> */}
+        {/* </div> */}
+        {/* // </div> */}
+        {/* // </section> */}
 
         {/* Why Choose Us Section */}
-        <section className="py-20 px-4">
+        {/* <section className="py-20 px-4">
           <div className="container mx-auto max-w-6xl">
             <div className="text-center mb-16">
               <Badge className="bg-purple-100 text-purple-700 px-4 py-2 text-4xl mb-4">
-                Why us will come 
+                Why us will come
               </Badge>
               <h2 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
                 We don’t just assist
@@ -433,17 +473,17 @@ export default function Home() {
               </Card>
             </div>
           </div>
-        </section>
+        </section> */}
 
         {/* Awards & Recognition Section */}
-        <section className="py-20 px-4 bg-gradient-to-br from-blue-500 via-purple-600 to-pink-600 relative overflow-hidden">
-          {/* Decorative background elements */}
-          <div className="absolute inset-0 opacity-10">
+        {/* <section className="py-20 px-4 bg-gradient-to-br from-blue-500 via-purple-600 to-pink-600 relative overflow-hidden"> */}
+        {/* Decorative background elements */}
+        {/* <div className="absolute inset-0 opacity-10">
             <div className="absolute top-10 left-10 w-72 h-72 bg-white rounded-full blur-3xl"></div>
             <div className="absolute bottom-10 right-10 w-96 h-96 bg-cyan-300 rounded-full blur-3xl"></div>
-          </div>
+          </div> */}
 
-          <div className="container mx-auto max-w-6xl relative z-10">
+        {/* <div className="container mx-auto max-w-6xl relative z-10">
             <div className="text-center mb-16">
               <Badge className="bg-white/20 backdrop-blur text-white border-white/30 px-4 py-2 text-sm mb-4">
                 <Award className="w-4 h-4 mr-2 inline" />
@@ -530,178 +570,203 @@ export default function Home() {
                 </CardContent>
               </Card>
             </div>
-          </div>
-        </section>
+          </div> */}
+        {/* </section> */}
 
         {/* Services Overview Section */}
         <section className="py-20 px-4 bg-gradient-to-br from-gray-50 to-gray-100">
-          <div className="container mx-auto max-w-6xl">
-            <div className="text-center mb-16">
-              <Badge className="bg-blue-100 text-blue-700 px-4 py-2 text-4xl mb-4">
+          <div className="container mx-auto max-w-6xl ">
+            <div className="text-center mb-16 ">
+              <Badge className="bg-blue-100 text-blue-700 px-4 py-2 text-6xl mb-4">
                 Our Services
               </Badge>
-              <h2 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-                Comprehensive Research Solutions
-              </h2>
-              <p className="text-xl text-gray-700 max-w-3xl mx-auto font-medium">
-                From concept to publication, we provide every service you need to succeed in academic research
-              </p>
             </div>
 
             <div className="grid md:grid-cols-2 gap-8">
               <Card className="group hover:shadow-2xl transition-all border-2 hover:border-blue-500 bg-white">
                 <CardHeader>
-                  <div className="flex items-start justify-between">
+                  {/* <div className="flex items-start justify-between">
                     <BookOpen className="w-14 h-14 text-blue-600 group-hover:scale-110 transition-transform" />
                     <Badge className="bg-blue-100 text-blue-700">Popular</Badge>
-                  </div>
-                  <CardTitle className="text-2xl mt-4 text-gray-900">Research Paper Publication</CardTitle>
+                  </div> */}
+                  <CardTitle className="text-3xl mt-4 text-gray-900">Research Development & Publication Support.</CardTitle>
                   <CardDescription className="text-base text-gray-700">
-                    Expert assistance in publishing your research in high-impact, peer-reviewed journals with international recognition
+                    Comprehensive assistance in developing, refining, and successfully publishing high-quality research in credible peer-reviewed journals.
                   </CardDescription>
                 </CardHeader>
                 <CardContent>
                   <ul className="space-y-2 mb-6">
                     <li className="flex items-start gap-2">
                       <CheckCircle2 className="w-5 h-5 text-green-600 mt-0.5 flex-shrink-0" />
-                      <span className="text-gray-700">Journal selection and recommendation</span>
+                      <span className="text-gray-700">Manuscript writing, editing, and formatting</span>
                     </li>
                     <li className="flex items-start gap-2">
                       <CheckCircle2 className="w-5 h-5 text-green-600 mt-0.5 flex-shrink-0" />
-                      <span className="text-gray-700">Manuscript preparation and formatting</span>
+                      <span className="text-gray-700">Journal selection and suitability analysis</span>
                     </li>
                     <li className="flex items-start gap-2">
                       <CheckCircle2 className="w-5 h-5 text-green-600 mt-0.5 flex-shrink-0" />
-                      <span className="text-gray-700">Peer review coordination</span>
+                      <span className="text-gray-700">Peer-review coordination and response drafting</span>
                     </li>
                     <li className="flex items-start gap-2">
                       <CheckCircle2 className="w-5 h-5 text-green-600 mt-0.5 flex-shrink-0" />
-                      <span className="text-gray-700">Global indexing support</span>
+                      <span className="text-gray-700">Publication strategy and indexing advisory</span>
                     </li>
                   </ul>
-                  <Link href="/services">
+                  {/* <Link href="/services">
                     <Button className="w-full bg-blue-600 hover:bg-blue-700">
                       Learn More
                       <ArrowRight className="w-4 h-4 ml-2" />
                     </Button>
-                  </Link>
+                  </Link> */}
                 </CardContent>
               </Card>
 
               <Card className="group hover:shadow-2xl transition-all border-2 hover:border-purple-500 bg-white">
                 <CardHeader>
-                  <div className="flex items-start justify-between">
+                  {/* <div className="flex items-start justify-between">
                     <Microscope className="w-14 h-14 text-purple-600 group-hover:scale-110 transition-transform" />
                     <Badge className="bg-purple-100 text-purple-700">Premium</Badge>
-                  </div>
-                  <CardTitle className="text-2xl mt-4 text-gray-900">Research Guidance & Mentorship</CardTitle>
+                  </div> */}
+                  <CardTitle className="text-3xl mt-4 text-gray-900">Thesis & Dissertation Consultancy.</CardTitle>
                   <CardDescription className="text-base text-gray-700">
-                    One-on-one mentorship from PhD scholars and subject experts to guide your entire research journey
+                    Structured academic support for Master’s and PhD scholars from proposal stage to final submission and defense preparation.
                   </CardDescription>
                 </CardHeader>
                 <CardContent>
                   <ul className="space-y-2 mb-6">
                     <li className="flex items-start gap-2">
                       <CheckCircle2 className="w-5 h-5 text-green-600 mt-0.5 flex-shrink-0" />
-                      <span className="text-gray-700">Research topic selection</span>
+                      <span className="text-gray-700">Research proposal development.</span>
                     </li>
                     <li className="flex items-start gap-2">
                       <CheckCircle2 className="w-5 h-5 text-green-600 mt-0.5 flex-shrink-0" />
-                      <span className="text-gray-700">Literature review assistance</span>
+                      <span className="text-gray-700">Chapter-wise review and refinement.</span>
                     </li>
                     <li className="flex items-start gap-2">
                       <CheckCircle2 className="w-5 h-5 text-green-600 mt-0.5 flex-shrink-0" />
-                      <span className="text-gray-700">Methodology development</span>
+                      <span className="text-gray-700">Statistical analysis and data interpretation.</span>
                     </li>
                     <li className="flex items-start gap-2">
                       <CheckCircle2 className="w-5 h-5 text-green-600 mt-0.5 flex-shrink-0" />
-                      <span className="text-gray-700">Data analysis support</span>
+                      <span className="text-gray-700">Viva and defense presentation preparation</span>
                     </li>
                   </ul>
-                  <Link href="/services">
+                  {/* <Link href="/services">
                     <Button className="w-full bg-purple-600 hover:bg-purple-700">
                       Learn More
                       <ArrowRight className="w-4 h-4 ml-2" />
                     </Button>
-                  </Link>
+                  </Link> */}
                 </CardContent>
               </Card>
 
               <Card className="group hover:shadow-2xl transition-all border-2 hover:border-pink-500 bg-white">
                 <CardHeader>
-                  <div className="flex items-start justify-between">
+                  {/* <div className="flex items-start justify-between">
                     <Video className="w-14 h-14 text-pink-600 group-hover:scale-110 transition-transform" />
                     <Badge className="bg-pink-100 text-pink-700">Interactive</Badge>
-                  </div>
-                  <CardTitle className="text-2xl mt-4 text-gray-900">Webinars & Workshops</CardTitle>
+                  </div> */}
+                  <CardTitle className="text-3xl mt-4 text-gray-900"> Research Mentorship & Methodology Guidance.</CardTitle>
                   <CardDescription className="text-base text-gray-700">
-                    Regular online sessions covering latest research trends, publication ethics, and academic writing skills
+                    Personalized academic mentoring designed to strengthen research design, clarity, and scholarly rigor.
                   </CardDescription>
                 </CardHeader>
                 <CardContent>
                   <ul className="space-y-2 mb-6">
                     <li className="flex items-start gap-2">
                       <CheckCircle2 className="w-5 h-5 text-green-600 mt-0.5 flex-shrink-0" />
-                      <span className="text-gray-700">Monthly expert webinars</span>
+                      <span className="text-gray-700">Research topic finalization.</span>
                     </li>
                     <li className="flex items-start gap-2">
                       <CheckCircle2 className="w-5 h-5 text-green-600 mt-0.5 flex-shrink-0" />
-                      <span className="text-gray-700">Hands-on writing workshops</span>
+                      <span className="text-gray-700">Literature review structuring.</span>
                     </li>
                     <li className="flex items-start gap-2">
                       <CheckCircle2 className="w-5 h-5 text-green-600 mt-0.5 flex-shrink-0" />
-                      <span className="text-gray-700">Q&A with industry experts</span>
+                      <span className="text-gray-700">Methodology development and validation.</span>
                     </li>
                     <li className="flex items-start gap-2">
                       <CheckCircle2 className="w-5 h-5 text-green-600 mt-0.5 flex-shrink-0" />
-                      <span className="text-gray-700">Certificate of participation</span>
+                      <span className="text-gray-700">Data analysis guidance and interpretation</span>
                     </li>
                   </ul>
-                  <Link href="/services">
+                  {/* <Link href="/services">
                     <Button className="w-full bg-pink-600 hover:bg-pink-700">
                       Learn More
                       <ArrowRight className="w-4 h-4 ml-2" />
                     </Button>
-                  </Link>
+                  </Link> */}
                 </CardContent>
               </Card>
 
               <Card className="group hover:shadow-2xl transition-all border-2 hover:border-green-500 bg-white">
                 <CardHeader>
-                  <div className="flex items-start justify-between">
+                  {/* <div className="flex items-start justify-between">
                     <BookMarked className="w-14 h-14 text-green-600 group-hover:scale-110 transition-transform" />
                     <Badge className="bg-green-100 text-green-700">Essential</Badge>
-                  </div>
-                  <CardTitle className="text-2xl mt-4 text-gray-900">Thesis & Dissertation Support</CardTitle>
+                  </div> */}
+                  <CardTitle className="text-3xl mt-4 text-gray-900">IPR & Innovation Support</CardTitle>
                   <CardDescription className="text-base text-gray-700">
-                    Complete support for PhD and Master's students from proposal to final submission and defense preparation
+                    Professional support for protecting research outcomes and innovative ideas through structured intellectual property assistance.
                   </CardDescription>
                 </CardHeader>
                 <CardContent>
                   <ul className="space-y-2 mb-6">
                     <li className="flex items-start gap-2">
                       <CheckCircle2 className="w-5 h-5 text-green-600 mt-0.5 flex-shrink-0" />
-                      <span className="text-gray-700">Proposal development</span>
+                      <span className="text-gray-700">Patentability assessment and prior-art search</span>
                     </li>
                     <li className="flex items-start gap-2">
                       <CheckCircle2 className="w-5 h-5 text-green-600 mt-0.5 flex-shrink-0" />
-                      <span className="text-gray-700">Chapter-by-chapter review</span>
+                      <span className="text-gray-700">Patent drafting and claim structuring</span>
                     </li>
                     <li className="flex items-start gap-2">
                       <CheckCircle2 className="w-5 h-5 text-green-600 mt-0.5 flex-shrink-0" />
-                      <span className="text-gray-700">Statistical analysis help</span>
+                      <span className="text-gray-700">Filing coordination and documentation support</span>
                     </li>
                     <li className="flex items-start gap-2">
                       <CheckCircle2 className="w-5 h-5 text-green-600 mt-0.5 flex-shrink-0" />
-                      <span className="text-gray-700">Defense presentation prep</span>
+                      <span className="text-gray-700">Copyright and design registration guidance</span>
                     </li>
                   </ul>
-                  <Link href="/services">
+                  {/* <Link href="/services">
                     <Button className="w-full bg-green-600 hover:bg-green-700">
                       Learn More
                       <ArrowRight className="w-4 h-4 ml-2" />
                     </Button>
-                  </Link>
+                  </Link> */}
+                </CardContent>
+              </Card>
+
+
+              {/* <Card className="group hover:shadow-2xl transition-all border-2 hover:border-green-500 bg-white"> */}
+              <Card className="md:col-span-2 md:max-w-2xl md:mx-auto group hover:shadow-2xl transition-all border-2 hover:border-green-500 bg-white">
+                <CardHeader>
+                  <CardTitle className="text-3xl mt-4 text-gray-900">Research Training & Scholarly Programs</CardTitle>
+                  <CardDescription className="text-base text-gray-700">
+                    Capacity-building initiatives aimed at enhancing academic skills and research excellence.
+                  </CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <ul className="space-y-2 mb-6">
+                    <li className="flex items-start gap-2">
+                      <CheckCircle2 className="w-5 h-5 text-green-600 mt-0.5 flex-shrink-0" />
+                      <span className="text-gray-700">Expert-led webinars and workshops</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <CheckCircle2 className="w-5 h-5 text-green-600 mt-0.5 flex-shrink-0" />
+                      <span className="text-gray-700">Academic writing and publication ethics training</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <CheckCircle2 className="w-5 h-5 text-green-600 mt-0.5 flex-shrink-0" />
+                      <span className="text-gray-700">Research skill development sessions</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <CheckCircle2 className="w-5 h-5 text-green-600 mt-0.5 flex-shrink-0" />
+                      <span className="text-gray-700">Certificates of participation</span>
+                    </li>
+                  </ul>
                 </CardContent>
               </Card>
             </div>
@@ -854,64 +919,329 @@ export default function Home() {
         <section className="py-20 bg-white">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-16">
-              <h2 className="text-4xl font-bold mb-4 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-                Latest News & Updates
-              </h2>
-              <p className="text-xl text-gray-700 max-w-3xl mx-auto">
-                Stay informed about our recent achievements and upcoming events
-              </p>
+              <h1 className="text-2xl md:text-4xl font-bold bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent leading-[1.3] pb-2">
+                Our Key Verticals
+              </h1>
             </div>
 
-            <div className="grid md:grid-cols-3 gap-8">
-              <Card className="bg-gradient-to-br from-blue-50 to-purple-50 border-2 border-blue-200 p-6 hover:border-purple-400 transition-all hover:shadow-xl">
-                <div className="flex items-center gap-3 mb-4">
-                  <Calendar className="w-6 h-6 text-purple-600" />
-                  <span className="text-sm text-gray-700 font-medium">December 2024</span>
-                </div>
-                <h3 className="text-xl font-bold text-gray-900 mb-3">New Partnership with Leading Universities</h3>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 gap-8 items-stretch">
+              <Card className="w-full h-full bg-gradient-to-br from-blue-50 to-purple-50 border-2 border-blue-200 p-6 hover:border-purple-400 transition-all hover:shadow-xl md:col-span-2">
+                <h3 className="text-2xl font-bold text-gray-900 mb-3">Journal of Health Synapse</h3>
                 <p className="text-gray-700 mb-4">
-                  We've established MOUs with 5 premier institutions to enhance research collaboration and student support.
+                  Peer-reviewed journal publishing research and review articles in health sciences and interdisciplinary fields.
                 </p>
-                <Button variant="ghost" className="text-purple-600 hover:text-purple-700 p-0">
-                  Read More <ArrowRight className="w-4 h-4 ml-2" />
+                <Button variant="ghost" className="text-2xl text-purple-600 hover:text-purple-700 p-0">
+                  Explore  More <ArrowRight className="w-4 h-4 ml-2" />
                 </Button>
               </Card>
 
-              <Card className="bg-gradient-to-br from-blue-50 to-purple-50 border-2 border-blue-200 p-6 hover:border-purple-400 transition-all hover:shadow-xl">
-                <div className="flex items-center gap-3 mb-4">
-                  <Calendar className="w-6 h-6 text-purple-600" />
-                  <span className="text-sm text-gray-700 font-medium">November 2024</span>
-                </div>
-                <h3 className="text-xl font-bold text-gray-900 mb-3">International Conference Success</h3>
+              <Card className="w-full h-full bg-gradient-to-br from-blue-50 to-purple-50 border-2 border-blue-200 p-6 hover:border-purple-400 transition-all hover:shadow-xl md:col-span-2">
+                <h3 className="text-2xl font-bold text-gray-900 mb-3">International Journal of Research and Development in Pharmacy & Life Sciences (IJRDPL)</h3>
                 <p className="text-gray-700 mb-4">
-                  Our researchers presented 25+ papers at IEEE International Conference with outstanding reception.
+                  International scholarly journal promoting original research and advancements in pharmacy and life sciences.
                 </p>
-                <Button variant="ghost" className="text-purple-600 hover:text-purple-700 p-0">
-                  Read More <ArrowRight className="w-4 h-4 ml-2" />
+                <Button variant="ghost" className="text-2xl text-purple-600 hover:text-purple-700 p-0">
+                  Explore  More <ArrowRight className="w-4 h-4 ml-2" />
                 </Button>
               </Card>
 
-              <Card className="bg-gradient-to-br from-blue-50 to-purple-50 border-2 border-blue-200 p-6 hover:border-purple-400 transition-all hover:shadow-xl">
-                <div className="flex items-center gap-3 mb-4">
-                  <Calendar className="w-6 h-6 text-purple-600" />
-                  <span className="text-sm text-gray-700 font-medium">October 2024</span>
-                </div>
-                <h3 className="text-xl font-bold text-gray-900 mb-3">Webinar Series Launch</h3>
+              <Card className="w-full h-full bg-gradient-to-br from-blue-50 to-purple-50 border-2 border-blue-200 p-6 hover:border-purple-400 transition-all hover:shadow-xl md:col-span-2">
+                <h3 className="text-2xl font-bold text-gray-900 mb-3">Scriptoria Publications</h3>
                 <p className="text-gray-700 mb-4">
-                  New monthly webinar series on research methodology and publication strategies begins this month.
+                  Academic publishing platform offering peer review, ISBN allocation, and end-to-end scholarly book publication support.
                 </p>
-                <Button variant="ghost" className="text-purple-600 hover:text-purple-700 p-0">
-                  Read More <ArrowRight className="w-4 h-4 ml-2" />
+                <Button variant="ghost" className="text-2xl text-purple-600 hover:text-purple-700 p-0">
+                  Explore  More <ArrowRight className="w-4 h-4 ml-2" />
+                </Button>
+              </Card>
+
+              <Card className="w-full h-full bg-gradient-to-br from-blue-50 to-purple-50 border-2 border-blue-200 p-6 hover:border-purple-400 transition-all hover:shadow-xl md:col-span-3">
+                <h3 className="text-2xl font-bold text-gray-900 mb-3">Scientistic Era Awards</h3>
+                <p className="text-gray-700 mb-4">
+                  Recognition initiative honoring excellence and contributions of researchers and academicians.
+                </p>
+                <Button variant="ghost" className="text-2xl text-purple-600 hover:text-purple-700 p-0">
+                  Explore  More <ArrowRight className="w-4 h-4 ml-2" />
+                </Button>
+              </Card>
+
+              <Card className="w-full h-full bg-gradient-to-br from-blue-50 to-purple-50 border-2 border-blue-200 p-6 hover:border-purple-400 transition-all hover:shadow-xl md:col-span-3">
+                <h3 className="text-2xl font-bold text-gray-900 mb-3">Universal E-Magazine</h3>
+                <p className="text-gray-700 mb-4">
+                  Digital magazine showcasing research highlights, innovations, expert insights, and academic achievements.
+                </p>
+                <Button variant="ghost" className="text-2xl text-purple-600 hover:text-purple-700 p-0">
+                  Explore  More <ArrowRight className="w-4 h-4 ml-2" />
                 </Button>
               </Card>
             </div>
           </div>
         </section>
 
+        <section className="py-20 px-4 bg-gradient-to-br from-blue-500 via-purple-600 to-pink-600 relative overflow-hidden">
+          {/* Decorative background elements */}
+          <div className="absolute inset-0 opacity-10">
+            <div className="absolute top-10 left-10 w-72 h-72 bg-white rounded-full blur-3xl"></div>
+            <div className="absolute bottom-10 right-10 w-96 h-96 bg-cyan-300 rounded-full blur-3xl"></div>
+          </div>
+
+          <div className="container mx-auto max-w-6xl relative z-10">
+            <div className="text-center mb-16">
+              <h2 className="text-4xl md:text-5xl font-bold mb-4 text-white">
+                Why Choose Us
+              </h2>
+            </div>
+
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+              <Card className="bg-white/95 backdrop-blur border-2 border-white/50 hover:border-white hover:shadow-2xl transition-all group">
+                <CardContent className="p-8 text-center">
+                  {/* <div className="w-20 h-20 bg-gradient-to-br from-blue-400 to-cyan-500 rounded-full mx-auto mb-6 flex items-center justify-center group-hover:scale-110 transition-transform">
+                    <Award className="w-10 h-10 text-white" />
+                  </div> */}
+                  <h3 className="text-xl font-bold text-gray-900 mb-3">Research Integrity</h3>
+                  <p className="text-gray-700">
+                    We uphold the highest standards of academic ethics, originality, and compliance. Every manuscript, patent draft, and submission is handled with precision and responsibility.
+                  </p>
+                </CardContent>
+              </Card>
+
+              <Card className="bg-white/95 backdrop-blur border-2 border-white/50 hover:border-white hover:shadow-2xl transition-all group">
+                <CardContent className="p-8 text-center">
+                  <h3 className="text-xl font-bold text-gray-900 mb-3">Expert-Led Academic & IPR Consultancy</h3>
+                  <p className="text-gray-700">
+                    Our team of experienced researchers, editors, and intellectual property professionals provides domain-specific guidance aligned with current scholarly and regulatory standards.
+                  </p>
+                </CardContent>
+              </Card>
+
+              <Card className="bg-white/95 backdrop-blur border-2 border-white/50 hover:border-white hover:shadow-2xl transition-all group">
+                <CardContent className="p-8 text-center">
+                  <h3 className="text-xl font-bold text-gray-900 mb-3">End-to-End Research & Patent Support</h3>
+                  <p className="text-gray-700">
+                    From idea refinement and manuscript development to patent drafting, filing assistance, and publication strategy — we offer complete lifecycle support under one roof.
+                  </p>
+                </CardContent>
+              </Card>
+
+              <Card className="bg-white/95 backdrop-blur border-2 border-white/50 hover:border-white hover:shadow-2xl transition-all group">
+                <CardContent className="p-8 text-center">
+
+                  <h3 className="text-xl font-bold text-gray-900 mb-3">Journal Targeting & Indexing Advisory</h3>
+                  <p className="text-gray-700">
+                    We assist in identifying suitable indexed journals and credible publication platforms to enhance research visibility and academic impact.
+                  </p>
+                </CardContent>
+              </Card>
+
+              <Card className="bg-white/95 backdrop-blur border-2 border-white/50 hover:border-white hover:shadow-2xl transition-all group">
+                <CardContent className="p-8 text-center">
+
+                  <h3 className="text-xl font-bold text-gray-900 mb-3">Structured & Transparent Workflow</h3>
+                  <p className="text-gray-700">
+                    Clear timelines, milestone-based execution, and consistent communication ensure accountability and clarity at every stage of engagement.
+                  </p>
+                </CardContent>
+              </Card>
+
+              <Card className="bg-white/95 backdrop-blur border-2 border-white/50 hover:border-white hover:shadow-2xl transition-all group">
+                <CardContent className="p-8 text-center">
+
+                  <h3 className="text-xl font-bold text-gray-900 mb-3">Time-Bound Delivery with Expert Review</h3>
+                  <p className="text-gray-700">
+                    Efficient turnaround supported by professional review and expert feedback, enabling timely submissions without compromising quality.
+                  </p>
+                </CardContent>
+              </Card>
+            </div>
+          </div>
+        </section>
+
+        <section className="py-20 bg-white">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+            {/* Heading */}
+            <div className="mb-8">
+              <h2 className="text-4xl font-bold text-gray-900">
+                Our <span className="text-black">Impact</span>
+              </h2>
+              {/* <p className="text-gray-600 mt-2">Since Jan 2022</p> */}
+            </div>
+
+            {/* Stats Grid */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-8">
+
+              {/* Card 1 */}
+              <div className="bg-white p-6 rounded-2xl shadow-md hover:shadow-xl transition duration-300 flex items-center gap-4">
+                <div className="text-4xl">📄</div>
+                <div>
+                  <h3 className="text-3xl font-bold">200+</h3>
+                  <p className="text-gray-600 text-sm">
+                    Research / Review Articles (SCI / Scopus / UGC Care)
+                  </p>
+                </div>
+              </div>
+
+              {/* Card 2 */}
+              <div className="bg-white p-6 rounded-2xl shadow-md hover:shadow-xl transition duration-300 flex items-center gap-4">
+                <div className="text-4xl">💡</div>
+                <div>
+                  <h3 className="text-3xl font-bold">100+</h3>
+                  <p className="text-gray-600 text-sm">
+                    Patents (International / National / Utility / Design)
+                  </p>
+                </div>
+              </div>
+
+              {/* Card 3 */}
+              <div className="bg-white p-6 rounded-2xl shadow-md hover:shadow-xl transition duration-300 flex items-center gap-4">
+                <div className="text-4xl">📚</div>
+                <div>
+                  <h3 className="text-3xl font-bold">70+</h3>
+                  <p className="text-gray-600 text-sm">
+                    Peer Reviewed Books (ISBN)
+                  </p>
+                </div>
+              </div>
+
+              {/* Card 4 */}
+              <div className="bg-white p-6 rounded-2xl shadow-md hover:shadow-xl transition duration-300 flex items-center gap-4">
+                <div className="text-4xl">©️</div>
+                <div>
+                  <h3 className="text-3xl font-bold">50+</h3>
+                  <p className="text-gray-600 text-sm">
+                    Copyrights
+                  </p>
+                </div>
+              </div>
+
+              {/* Card 5 */}
+              <div className="bg-white p-6 rounded-2xl shadow-md hover:shadow-xl transition duration-300 flex items-center gap-4">
+                <div className="text-4xl">™️</div>
+                <div>
+                  <h3 className="text-3xl font-bold">25+</h3>
+                  <p className="text-gray-600 text-sm">
+                    Trademarks
+                  </p>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </section>
+
+                    <section className="py-20 bg-white">
+  <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+    {/* Heading */}
+    <div className="mb-12">
+      <h2 className="text-4xl font-bold text-gray-900 leading-tight">
+        <span className="block text-2xl font-bold text-black-600">MoU Partners</span>
+         Collaborations
+      </h2>
+    </div>
+
+    {/* Slider */}
+    <Slider />
+
+  </div>
+</section>
+
+        <section className="py-24 bg-gradient-to-br from-gray-50 to-gray-100">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+            {/* Heading */}
+            <div className="text-center mb-16">
+              <h2 className="text-6xl test-bold font-semibold text-gray-900">
+                Our Process
+              </h2>
+              <p className="mt-4 text-lg text-black-600 italic">
+                A Structured Pathway from Concept to Credibility
+              </p>
+              <p className="mt-4 text-black max-w-2xl mx-auto">
+                We follow a transparent, methodical framework to ensure your research and innovation journey
+                is guided with integrity, precision, and impact.
+              </p>
+            </div>
+
+            {/* Timeline */}
+            <div className="relative">
+
+              {/* Horizontal Line (Desktop Only) */}
+              <div className="hidden md:block absolute top-8 left-0 w-full h-0.5 bg-gray-200"></div>
+
+              <div className="grid grid-cols-1 md:grid-cols-4 gap-12 relative">
+
+                {/* Step 1 */}
+                <div className="text-center relative">
+                  <div className="w-16 h-16 mx-auto rounded-full bg-blue-600 text-white flex items-center justify-center text-xl font-semibold relative z-10">
+                    01
+                  </div>
+                  <h3 className="mt-6 font-bold text-black-900 text-xl">
+                    Discovery & Consultation
+                  </h3>
+                  <p className="mt-3 text-black-600 text-m leading-relaxed">
+                    Initial assessment of research goals, innovation stage, and publication needs.
+                  </p>
+                </div>
+
+                {/* Step 2 */}
+                <div className="text-center relative">
+                  <div className="w-16 h-16 mx-auto rounded-full bg-blue-600 text-white flex items-center justify-center text-xl font-semibold relative z-10">
+                    02
+                  </div>
+                  <h3 className="mt-6 font-bold text-black-900 text-xl">
+                    Strategic Planning & Structuring
+                  </h3>
+                 <p className="mt-3 text-black-600 text-m leading-relaxed">
+                    Tailored strategy for drafting, patent planning, or journal targeting.
+                  </p>
+                </div>
+
+                {/* Step 3 */}
+                <div className="text-center relative">
+                  <div className="w-16 h-16 mx-auto rounded-full bg-blue-600 text-white flex items-center justify-center text-xl font-semibold relative z-10">
+                    03
+                  </div>
+                  <h3 className="mt-6 font-bold text-black-900 text-xl">
+                    Expert Execution & Quality Review
+                  </h3>
+                  <p className="mt-3 text-black-600 text-m leading-relaxed">
+                    Drafting, editing, and rigorous review by our subject experts.
+                  </p>
+                </div>
+
+                {/* Step 4 */}
+                <div className="text-center relative">
+                  <div className="w-16 h-16 mx-auto rounded-full bg-blue-600 text-white flex items-center justify-center text-xl font-semibold relative z-10">
+                    04
+                  </div>
+                  <h3 className="mt-6 font-bold text-black-900 text-xl">
+                    Submission & Dissemination
+                  </h3>
+                  <p className="mt-3 text-black-600 text-m leading-relaxed">
+                    Journal submission, patent filing, and knowledge sharing.
+                  </p>
+                </div>
+
+              </div>
+            </div>
+
+            {/* Bottom Statement */}
+            <div className="mt-20 border-t pt-8 text-center">
+              <p className="text-black-700">
+                Every project is handled with strict <span className="font-semibold">confidentiality</span>,
+                <span className="font-semibold"> ethical transparency</span>, and
+                <span className="font-semibold"> academic compliance</span>.
+              </p>
+            </div>
+
+          </div>
+        </section>
+
 
         {/* ========================== */}
         {/* Testimonials Section */}
-        <section className="py-20 bg-gradient-to-br from-gray-50 to-blue-50">
+        {/* <section className="py-20 bg-gradient-to-br from-gray-50 to-blue-50">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold mb-4 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
               What Researchers Say About Us
@@ -957,7 +1287,7 @@ export default function Home() {
               ))}
             </div>
           </div>
-        </section>
+        </section> */}
 
         {/* CTA Section */}
         <section className="py-20 px-4">
