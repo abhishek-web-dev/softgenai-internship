@@ -32,22 +32,17 @@ export function Header() {
 
   const navigation = [
     { name: "Home", href: "/" },
-    {
-      name: "About",
-      href: "/about",
-      dropdown: [
-        { name: "About Us", href: "/about" },
-        { name: "MOU Partners", href: "/mou-partners" },
-      ]
-    },
-    {
-      name: "Services",
+    { name: "About", href: "/our-about" },
+    { name: "Services", 
       href: "/services",
-      dropdown: [
-        { name: "All Services", href: "/services" },
-        { name: "IPR Services", href: "/ipr-services" },
+      dropdown:[
+    { name: "Research Consultancy", href: "/research_consultancy" },
+    { name: "Intellectual Property (IPR)", href: "/ipr" },
+    { name: "Academic Publishing", href: "/academic_publishing" },
+    { name: "Knowledge Platforms", href: "/knowledge_latforms" },
+    { name: "Collaboration & Institutional Support", href: "/collaboration" },
       ]
-    },
+     },
     { name: "Webinars", href: "/webinars" },
     { name: "Journals", href: "/journals" },
     { name: "Publications ", href: "/gallery" },    
