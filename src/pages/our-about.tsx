@@ -363,9 +363,9 @@ navigation={{
   prevEl: ".team-prev",
 }}
 onInit={(swiper) => {
-// @ts-ignore
+// @ts-expect-error swiper navigation type issue
   swiper.params.navigation.prevEl = ".team-prev";
-// @ts-ignore
+// @ts-expect-error swiper navigation type issue
   swiper.params.navigation.nextEl = ".team-next";
 
   swiper.navigation.init();
