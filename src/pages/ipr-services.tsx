@@ -83,6 +83,8 @@ export default function IPRServices() {
     { icon: Users, label: "Satisfied Clients", value: "350+" },
   ];
 
+  
+
   return (
     <>
       <SEO 

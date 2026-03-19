@@ -23,14 +23,7 @@ export default function Webinars() {
     "/9th_national_webinar.png",
   ];
 
-  const [currentWebinar, setCurrentWebinar] = useState(0);
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentWebinar((prev) => (prev + 1) % webinarImages.length);
-    }, 4000);
-
-    return () => clearInterval(interval);
-  }, []);
+  
 
   const upcomingWebinars = [
     {
@@ -43,26 +36,7 @@ export default function Webinars() {
       topics: ["Qualitative Analysis", "Data Collection", "Ethics in Research"],
       status: "Registration Open"
     },
-    // {
-    //   title: "Patent Filing & IPR Protection for Researchers",
-    //   date: "February 22, 2026",
-    //   time: "4:00 PM - 6:00 PM IST",
-    //   speaker: "Dr. Priya Sharma",
-    //   designation: "IPR Consultant & Patent Attorney",
-    //   participants: "180+ Registered",
-    //   topics: ["Patent Process", "Copyright", "Trademark Basics"],
-    //   status: "Registration Open"
-    // },
-    // {
-    //   title: "Publishing in High Impact Journals",
-    //   date: "March 5, 2026",
-    //   time: "2:00 PM - 4:00 PM IST",
-    //   speaker: "Dr. Anil Verma",
-    //   designation: "Editor, International Journal of Science",
-    //   participants: "300+ Registered",
-    //   topics: ["Manuscript Preparation", "Peer Review", "Publication Ethics"],
-    //   status: "Registration Open"
-    // },
+   
   ];
 
   const pastWebinars = [
@@ -121,14 +95,14 @@ export default function Webinars() {
             <p className="text-xl md:text-2xl text-white/90 max-w-3xl mx-auto mb-8">
               Learn from industry experts and enhance your research skills through our comprehensive webinar series
             </p>
-            <div className="flex flex-wrap gap-4 justify-center">
+            {/* <div className="flex flex-wrap gap-4 justify-center">
               <Button size="lg" className="bg-white text-purple-600 hover:bg-gray-100 font-bold px-8">
                 Register Now
               </Button>
               <Button size="lg" variant="outline" className="border-white text-white hover:bg-white/10 font-bold px-8">
                 View Recordings
               </Button>
-            </div>
+            </div> */}
           </div>
         </section>
 
@@ -414,44 +388,32 @@ export default function Webinars() {
             />
           </div> */}
 
-        <section className="py-16 px-4">
-          <div className="max-w-6xl mx-auto text-center">
-            <h2 className="text-3xl md:text-4xl font-bold mb-12 bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
-              Our National & International Webinars
-            </h2>
+       <section className="py-16 px-4">
+  <div className="max-w-6xl mx-auto text-center">
 
-            <div className="relative overflow-hidden rounded-2xl shadow-2xl bg-[#FEF8DD] p-4">
+    <h2 className="text-3xl md:text-4xl font-bold mb-12 bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
+      Our National & International Webinars
+    </h2>
 
-              {/* Slides */}
-              <div
-                className="flex transition-transform duration-700 ease-in-out"
-                style={{ transform: `translateX(-${currentWebinar * 100}%)` }}
-              >
-                {webinarImages.map((img, i) => (
-                  <div key={i} className="min-w-full flex justify-center">
-                    <img
-                      src={img}
-                      alt="Webinar"
-                      className="w-full max-w-4xl h-[550px] object-contain rounded-xl shadow-xl border border-gray-200 bg-white p-2"
-                    />
-                  </div>
-                ))}
-              </div>
+    <div className="overflow-hidden relative bg-transparent rounded-2xl shadow-2xl py-6">
 
-              {/* Dots */}
-              <div className="flex justify-center mt-6 gap-3">
-                {webinarImages.map((_, i) => (
-                  <button
-                    key={i}
-                    onClick={() => setCurrentWebinar(i)}
-                    className={`w-3 h-3 rounded-full transition-all ${currentWebinar === i ? "bg-cyan-500 w-6" : "bg-gray-300"
-                      }`}
-                  />
-                ))}
-              </div>
-            </div>
+      <div className="flex animate-marquee gap-6">
+
+        {[...webinarImages, ...webinarImages].map((img, i) => (
+          <div key={i} className="flex-shrink-0">
+            <img
+              src={img}
+              alt="Webinar"
+              className="w-[400px] h-[550px] object-contain p-5"
+            />
           </div>
-        </section>
+        ))}
+
+      </div>
+
+    </div>
+  </div>
+</section>
 
 
 

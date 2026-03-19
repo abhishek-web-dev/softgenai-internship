@@ -7,166 +7,118 @@ import Image from "next/image";
 export function Header() {
   const router = useRouter();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  // const [aboutDropdownOpen, setAboutDropdownOpen] = useState(false);
-  const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
-
-
-  // const navigation = [
-  //   { name: "Home", href: "/" },
-  //   { 
-  //     name: "About", 
-  //     href: "/about",
-  //     dropdown: [
-  //       { name: "About Us", href: "/about" },
-  //       { name: "IPR Services", href: "/ipr-services" },
-  //       { name: "MOU Partners", href: "/mou-partners" },
-  //     ]
-  //   },
-  //   { name: "Services", href: "/services"},
-  //   { name: "Journals", href: "/journals" },
-  //   { name: "Gallery", href: "/gallery" },
-  //   { name: "Webinars", href: "/webinars" },
-  //   { name: "Medicine", href: "/medicine" },
-  //   { name: "Contact", href: "/contact" },
-  // ];
+  const [activeDropdown, setActiveDropdown] = useState(null);
 
   const navigation = [
     { name: "Home", href: "/" },
     { name: "About", href: "/our-about" },
-    { name: "Services", 
+    {
+      name: "Services",
       href: "/services",
-      dropdown:[
-    { name: "Research Consultancy", href: "/research_consultancy" },
-    { name: "Intellectual Property (IPR)", href: "/ipr" },
-    { name: "Academic Publishing", href: "/academic_publishing" },
-    { name: "Knowledge Platforms", href: "/knowledge_latforms" },
-    { name: "Collaboration & Institutional Support", href: "/collaboration" },
-      ]
-     },
+      dropdown: [
+        { name: "Research Consultancy", href: "/research_consultancy" },
+        { name: "Intellectual Property (IPR)", href: "/ipr" },
+        { name: "Academic Publishing", href: "/academic_publishing" },
+        { name: "Knowledge Platforms", href: "/knowledge_latforms" },
+        { name: "Collaboration & Institutional Support", href: "/collaboration" },
+      ],
+    },
     { name: "Webinars", href: "/webinars" },
     { name: "Journals", href: "/journals" },
-    { name: "Publications ", href: "/gallery" },    
+    { name: "Publications", href: "/gallery" },
     { name: "Pharmaceutics", href: "/medicine" },
     { name: "Contact", href: "/contact" },
   ];
 
+  const isActive = (path) => router.pathname === path;
 
-  const isActive = (path: string) => router.pathname === path;
-  // const isAboutActive = () => {
-  //   return router.pathname === "/about" || 
-  //          router.pathname === "/ipr-services" || 
-  //          router.pathname === "/mou-partners";
-  // };
-
-  const isDropdownActive = (dropdownItems?: { href: string }[]) => {
-    return dropdownItems?.some(item => item.href === router.pathname);
+  const isDropdownActive = (dropdownItems) => {
+    return dropdownItems?.some((item) => item.href === router.pathname);
   };
-
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-sm border-b border-gray-200 shadow-sm">
       <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-24">
 
-          {/* Logo */}
-          {/* <Link href="/" className="flex items-center space-x-3 group">
-            <div className="relative w-14 h-14 overflow-hidden ring-2 ring-blue-500/20 group-hover:ring-blue-500/40 transition-all">
-              <Image
-                src="/WhatsApp_Image_2026-01-09_at_11.07.43_PM.jpeg"
-                alt="ScientisticEra Logo"
-                fill
-                className="object-cover"
-                priority
-              />
-            </div> */}
-
-
-          {/* <div className="flex flex-col">
-            <span className="text-xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-              ScientisticEra
-            </span>
-            <span className="text-xs text-gray-600">Private Limited</span>
-          </div> */}
-
+          {/* LOGO */}
           <Link href="/" className="flex items-center gap-3 mt-2">
-  <Image
-    src="/New_Logo.png"
-    alt="ScientisticEra Logo"
-    width={150}
-    height={80}
-    className="object-contain"
-    priority
-  />
+            <Image
+              src="/New_Logo.png"
+              alt="ScientisticEra Logo"
+              width={150}
+              height={80}
+              className="object-contain"
+              priority
+            />
+            <div className="flex flex-col leading-tight">
+              <span className="text-2xl font-bold text-blue-600">
+                ScientisticEra
+              </span>
+              <span className="text-sm text-gray-600">Pvt Ltd</span>
+            </div>
+          </Link>
 
-  <div className="flex flex-col leading-tight">
-    <span className="text-2xl font-bold text-blue-600">
-      ScientisticEra
-    </span>
-    <span className="text-sm text-gray-600">Pvt Ltd</span>
-  </div>
-</Link>
-
-          {/* </Link> */}
-
-          {/* Desktop Navigation */}
+          {/* DESKTOP NAV */}
           <div className="hidden md:flex items-center space-x-1">
-            {navigation.map((item) => (
+            {navigation.map((item) =>
               item.dropdown ? (
-                <div
-                  key={item.name}
-                  className="relative"
-                  // onMouseEnter={() => setAboutDropdownOpen(true)}
-                  // onMouseLeave={() => setAboutDropdownOpen(false)}
+                <div key={item.name} className="relative group">
 
-                  onMouseEnter={() => setActiveDropdown(item.name)}
-                  onMouseLeave={() => setActiveDropdown(null)}
-
-                >
+                  {/* BUTTON */}
                   <button
-                    className={`px-4 py-2 rounded-lg font-medium transition-all flex items-center space-x-1 ${isDropdownActive(item.dropdown)
+                    className={`px-4 py-2 rounded-lg font-medium transition-all flex items-center space-x-1 ${
+                      isDropdownActive(item.dropdown)
                         ? "bg-gradient-to-r from-blue-600 to-purple-600 text-white shadow-lg"
                         : "text-gray-700 hover:bg-gray-100"
-                      }`}
+                    }`}
                   >
                     <span>{item.name}</span>
                     <ChevronDown className="w-4 h-4" />
                   </button>
 
-                  {/* {aboutDropdownOpen && ( */}
-                  {activeDropdown === item.name && (
+                  {/* DROPDOWN */}
+                  <div className="absolute left-0 top-full mt-1 w-60 opacity-0 invisible 
+                  group-hover:opacity-100 group-hover:visible 
+                  transition-all duration-200 z-50">
 
-                    <div className="absolute top-full left-0 mt-1 w-48 bg-white rounded-lg shadow-lg border border-gray-200 py-2">
+                    {/* Invisible hover bridge */}
+                    <div className="absolute -top-3 left-0 w-full h-3"></div>
+
+                    <div className="bg-white rounded-xl shadow-xl border border-gray-200 py-2">
                       {item.dropdown.map((subItem) => (
                         <Link
                           key={subItem.name}
                           href={subItem.href}
-                          className={`block px-4 py-2 text-sm font-medium transition-colors ${isActive(subItem.href)
+                          className={`block px-4 py-2 text-sm font-medium transition-all ${
+                            isActive(subItem.href)
                               ? "bg-gradient-to-r from-blue-600 to-purple-600 text-white"
                               : "text-gray-700 hover:bg-gray-100"
-                            }`}
+                          }`}
                         >
                           {subItem.name}
                         </Link>
                       ))}
                     </div>
-                  )}
+                  </div>
                 </div>
               ) : (
                 <Link
                   key={item.name}
                   href={item.href}
-                  className={`px-4 py-2 rounded-lg font-medium transition-all ${isActive(item.href)
+                  className={`px-4 py-2 rounded-lg font-medium transition-all ${
+                    isActive(item.href)
                       ? "bg-gradient-to-r from-blue-600 to-purple-600 text-white shadow-lg"
                       : "text-gray-700 hover:bg-gray-100"
-                    }`}
+                  }`}
                 >
                   {item.name}
                 </Link>
               )
-            ))}
+            )}
           </div>
 
-          {/* Mobile Menu Button */}
+          {/* MOBILE BUTTON */}
           <button
             className="md:hidden p-2 rounded-lg hover:bg-gray-100"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
@@ -179,41 +131,41 @@ export function Header() {
           </button>
         </div>
 
-        {/* Mobile Navigation */}
+        {/* MOBILE MENU */}
         {mobileMenuOpen && (
           <div className="md:hidden py-4 space-y-2">
-            {navigation.map((item) => (
+            {navigation.map((item) =>
               item.dropdown ? (
                 <div key={item.name} className="space-y-2">
                   <div
-                    className={`px-4 py-3 rounded-lg font-medium transition-all cursor-pointer ${isDropdownActive(item.dropdown)
+                    className={`px-4 py-3 rounded-lg font-medium transition-all cursor-pointer ${
+                      isDropdownActive(item.dropdown)
                         ? "bg-gradient-to-r from-blue-600 to-purple-600 text-white"
                         : "text-gray-700 bg-gray-50"
-                      }`}
-                    // onClick={() => setAboutDropdownOpen(!aboutDropdownOpen)}
-                    onClick={() => setActiveDropdown(activeDropdown === item.name ? null : item.name)}
-
+                    }`}
+                    onClick={() =>
+                      setActiveDropdown(
+                        activeDropdown === item.name ? null : item.name
+                      )
+                    }
                   >
                     <div className="flex items-center justify-between">
                       <span>{item.name}</span>
-                      {/* <ChevronDown className={`w-4 h-4 transition-transform ${aboutDropdownOpen ? "rotate-180" : ""}`} /> */}
-                      <ChevronDown className={`w-4 h-4 transition-transform ${activeDropdown === item.name ? "rotate-180" : ""}`} />
-
+                      <ChevronDown
+                        className={`w-4 h-4 transition-transform ${
+                          activeDropdown === item.name ? "rotate-180" : ""
+                        }`}
+                      />
                     </div>
                   </div>
 
-                  {/* {aboutDropdownOpen && ( */}
                   {activeDropdown === item.name && (
-
                     <div className="pl-4 space-y-2">
                       {item.dropdown.map((subItem) => (
                         <Link
                           key={subItem.name}
                           href={subItem.href}
-                          className={`block px-4 py-2 rounded-lg text-sm font-medium transition-all ${isActive(subItem.href)
-                              ? "bg-gradient-to-r from-blue-600 to-purple-600 text-white"
-                              : "text-gray-700 hover:bg-gray-100"
-                            }`}
+                          className="block px-4 py-2 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-100"
                           onClick={() => setMobileMenuOpen(false)}
                         >
                           {subItem.name}
@@ -226,16 +178,13 @@ export function Header() {
                 <Link
                   key={item.name}
                   href={item.href}
-                  className={`block px-4 py-3 rounded-lg font-medium transition-all ${isActive(item.href)
-                      ? "bg-gradient-to-r from-blue-600 to-purple-600 text-white"
-                      : "text-gray-700 hover:bg-gray-100"
-                    }`}
+                  className="block px-4 py-3 rounded-lg font-medium text-gray-700 hover:bg-gray-100"
                   onClick={() => setMobileMenuOpen(false)}
                 >
                   {item.name}
                 </Link>
               )
-            ))}
+            )}
           </div>
         )}
       </nav>
