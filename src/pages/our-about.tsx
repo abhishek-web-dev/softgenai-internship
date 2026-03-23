@@ -311,275 +311,99 @@ export default function OurStory() {
 
 </section>
 
-            <section className="py-20 bg-white">
+            <section className="py-12 sm:py-16 md:py-20 bg-white">
+  <div className="max-w-7xl mx-auto px-4 sm:px-6">
 
-<div className="max-w-7xl mx-auto px-6">
+    {/* Heading + Arrows */}
+    <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4 sm:gap-0 mb-8 sm:mb-12">
 
-{/* Heading */}
+      <div className="text-center sm:text-left">
+        <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent">
+          Our Leadership Team
+        </h2>
+        <p className="text-gray-600 mt-2 sm:mt-3 max-w-xl text-base sm:text-lg md:text-xl">
+          Meet the experts driving innovation in research and publication
+        </p>
+      </div>
 
-<div className="flex justify-between items-center mb-12">
+      {/* Arrows — centered on mobile, right on desktop */}
+      <div className="flex gap-3 justify-center sm:justify-end shrink-0">
+        <button className="team-prev w-10 h-10 sm:w-12 sm:h-12 flex items-center justify-center rounded-full bg-gray-300 text-gray-700 hover:bg-gray-400 transition">
+          <ChevronLeft size={20} />
+        </button>
+        <button className="team-next w-10 h-10 sm:w-12 sm:h-12 flex items-center justify-center rounded-full bg-[#0f1f3d] text-white hover:bg-[#162a4d] transition">
+          <ChevronRight size={20} />
+        </button>
+      </div>
 
-<div>
+    </div>
 
-<h2 className="text-3xl md:text-5xl font-bold bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent text-center">Our Leadership Team
-</h2>
+    {/* Slider */}
+    <Swiper
+      modules={[Navigation]}
+      spaceBetween={20}
+      slidesPerView={1}
+      loop={true}
+      navigation={{
+        nextEl: ".team-next",
+        prevEl: ".team-prev",
+      }}
+      onInit={(swiper) => {
+        // @ts-expect-error swiper navigation type issue
+        swiper.params.navigation.prevEl = ".team-prev";
+        // @ts-expect-error swiper navigation type issue
+        swiper.params.navigation.nextEl = ".team-next";
+        swiper.navigation.init();
+        swiper.navigation.update();
+      }}
+      breakpoints={{
+        480:  { slidesPerView: 1, spaceBetween: 16 },
+        640:  { slidesPerView: 2, spaceBetween: 20 },
+        1024: { slidesPerView: 3, spaceBetween: 30 },
+      }}
+    >
 
-<p className="text-gray-600 mt-3 max-w-xl text-xl">
-Meet the experts driving innovation in research and publication</p>
+      {[
+        { src: "/Team_01.png", name: "Dr. Sudhanshu Kumar Jha", role: "Founder & Director", linkedin: "USERNAME" },
+        { src: "/Team_02.png", name: "Ms. Mansi Negi",          role: "Co-Founder & Head BD", linkedin: "USERNAME" },
+        { src: "/Team_03.png", name: "Mr. Vishwajeet",          role: "Chief Technology Officer", linkedin: "USERNAME" },
+        { src: "/Team_04.png", name: "Mr. Jaydeep S. Baghel",   role: "Research Head Operations", linkedin: "USERNAME" },
+        { src: "/Team_05.png", name: "Ms. Ishika Antil",        role: "Research Specialist (Intern)", linkedin: "USERNAME" },
+        { src: "/Team_06.png", name: "Ms. Himani Raj",          role: "Research (Intern)", linkedin: "USERNAME" },
+      ].map((member, idx) => (
+        <SwiperSlide key={idx}>
+          <div className="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition">
 
-</div>
+            <Image
+              src={member.src}
+              alt={member.name}
+              width={400}
+              height={400}
+              className="w-full h-[280px] sm:h-[340px] md:h-[380px] lg:h-[420px] object-cover object-top"
+            />
 
-{/* ARROWS */}
+            <div className="p-4 sm:p-5 flex justify-between items-center">
+              <div>
+                <h3 className="font-semibold text-base sm:text-lg leading-snug">{member.name}</h3>
+                <p className="text-gray-500 text-xs sm:text-sm mt-0.5">{member.role}</p>
+              </div>
 
-<div className="flex gap-3 arrow">
-
-<button className="team-prev w-12 h-12 flex items-center justify-center rounded-full bg-gray-300 text-gray-700 hover:bg-gray-400 transition">
-
-<ChevronLeft size={22} />
-
-</button>
-
-<button className="team-next w-12 h-12 flex items-center justify-center rounded-full bg-[#0f1f3d] text-white hover:bg-[#162a4d] transition">
-
-<ChevronRight size={22} />
-
-</button>
-
-</div>
-
-
-</div>
-
-
-{/* Slider */}
-
-<Swiper
-modules={[Navigation]}
-spaceBetween={30}
-slidesPerView={3}
-loop={true}
-navigation={{
-  nextEl: ".team-next",
-  prevEl: ".team-prev",
-}}
-onInit={(swiper) => {
-// @ts-expect-error swiper navigation type issue
-  swiper.params.navigation.prevEl = ".team-prev";
-// @ts-expect-error swiper navigation type issue
-  swiper.params.navigation.nextEl = ".team-next";
-
-  swiper.navigation.init();
-  swiper.navigation.update();
-}}
-breakpoints={{
-  640: { slidesPerView: 2 },
-  1024: { slidesPerView: 3 },
-}}
->
-
-
-{/* Member 1 */}
-
-<SwiperSlide>
-<div className="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition">
-
-<Image
-  src="/Team_01.png"
-  alt="Team"
-  width={400}
-  height={400}
-  className="w-full h-[420px] object-cover object-top"
-/>
-
-<div className="p-5 flex justify-between items-center">
-
-<div>
-<h3 className="font-semibold text-lg">Dr. Sudhanshu Kumar Jha</h3>
-<p className="text-gray-500 text-sm">Founder & Director</p>
-</div>
-
-<a
-  href="https://www.linkedin.com/in/USERNAME"
+              <a
+                href={`https://www.linkedin.com/in/${member.linkedin}`}
   target="_blank"
   rel="noopener noreferrer"
-className="text-blue-600 hover:text-white hover:bg-blue-600 p-2 rounded-full transition"
+  className="text-blue-600 hover:text-white hover:bg-blue-600 p-2 rounded-full transition shrink-0"
 >
-  <Linkedin size={20} />
+  <Linkedin size={18} />
 </a>
-</div>
+            </div>
 
-</div>
-</SwiperSlide>
+          </div>
+        </SwiperSlide>
+      ))}
 
-{/* Member 2 */}
-
-<SwiperSlide>
-<div className="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition">
-
-<Image
-  src="/Team_02.png"
-  alt="Team"
-  width={400}
-  height={400}
-  className="w-full h-[420px] object-cover object-top"
-/>
-
-<div className="p-5 flex justify-between items-center">
-
-<div>
-<h3 className="font-semibold text-lg">Ms. Mansi Negi</h3>
-<p className="text-gray-500 text-sm">Co-Founder & Head BD</p>
-</div>
-
-<a
-  href="https://www.linkedin.com/in/USERNAME"
-  target="_blank"
-  rel="noopener noreferrer"
-className="text-blue-600 hover:text-white hover:bg-blue-600 p-2 rounded-full transition"
->
-  <Linkedin size={20} />
-</a>
-</div>
-
-</div>
-</SwiperSlide>
-
-{/* Member 3 */}
-
-<SwiperSlide>
-<div className="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition">
-
-<Image
-  src="/Team_03.png"
-  alt="Team"
-  width={400}
-  height={400}
-  className="w-full h-[420px] object-cover object-top"
-/>
-
-<div className="p-5 flex justify-between items-center">
-
-<div>
-<h3 className="font-semibold text-lg">Mr. Vishwajeet</h3>
-<p className="text-gray-500 text-sm">Chief Technology Officer</p>
-</div>
-
-<a
-  href="https://www.linkedin.com/in/USERNAME"
-  target="_blank"
-  rel="noopener noreferrer"
-className="text-blue-600 hover:text-white hover:bg-blue-600 p-2 rounded-full transition"
->
-  <Linkedin size={20} />
-</a>
-</div>
-
-</div>
-</SwiperSlide>
-
-{/* Member 4 */}
-
-<SwiperSlide>
-<div className="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition">
-
-<Image
-  src="/Team_04.png"
-  alt="Team"
-  width={400}
-  height={400}
-  className="w-full h-[420px] object-cover object-top"
-/>
-
-<div className="p-5 flex justify-between items-center">
-
-<div>
-<h3 className="font-semibold text-lg">Mr. Jaydeep S. Baghel</h3>
-<p className="text-gray-500 text-sm">Research Head Operations</p>
-</div>
-
-<a
-  href="https://www.linkedin.com/in/USERNAME"
-  target="_blank"
-  rel="noopener noreferrer"
-className="text-blue-600 hover:text-white hover:bg-blue-600 p-2 rounded-full transition"
->
-  <Linkedin size={20} />
-</a>
-</div>
-
-</div>
-</SwiperSlide>
-
-{/* Member 5 */}
-
-<SwiperSlide>
-<div className="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition">
-
-<Image
-  src="/Team_05.png"
-  alt="Team"
-  width={400}
-  height={400}
-  className="w-full h-[420px] object-cover object-top"
-/>
-
-<div className="p-5 flex justify-between items-center">
-
-<div>
-<h3 className="font-semibold text-lg">Ms. Ishika Antil</h3>
-<p className="text-gray-500 text-sm">Research Specialist (Intern)</p>
-</div>
-
-<a
-  href="https://www.linkedin.com/in/USERNAME"
-  target="_blank"
-  rel="noopener noreferrer"
-className="text-blue-600 hover:text-white hover:bg-blue-600 p-2 rounded-full transition"
->
-  <Linkedin size={20} />
-</a>
-</div>
-
-</div>
-</SwiperSlide>
-
-{/* Member 6 */}
-
-<SwiperSlide>
-<div className="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition">
-
-<Image
-  src="/Team_06.png"
-  alt="Team"
-  width={400}
-  height={400}
-  className="w-full h-[420px] object-cover object-top"
-/>
-
-<div className="p-5 flex justify-between items-center">
-
-<div>
-<h3 className="font-semibold text-lg">Ms. Himani Raj</h3>
-<p className="text-gray-500 text-sm">Research (Intern)</p>
-</div>
-
-<a
-  href="https://www.linkedin.com/in/USERNAME"
-  target="_blank"
-  rel="noopener noreferrer"
-className="text-blue-600 hover:text-white hover:bg-blue-600 p-2 rounded-full transition"
->
-  <Linkedin size={20} />
-</a>
-</div>
-
-</div>
-</SwiperSlide>
-
-</Swiper>
-
-</div>
-
+    </Swiper>
+  </div>
 </section>
 
 

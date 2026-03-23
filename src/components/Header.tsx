@@ -32,67 +32,60 @@ export function Header() {
 
   const isActive = (path) => router.pathname === path;
 
-  const isDropdownActive = (dropdownItems) => {
-    return dropdownItems?.some((item) => item.href === router.pathname);
-  };
+  const isDropdownActive = (dropdownItems) =>
+    dropdownItems?.some((item) => item.href === router.pathname);
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-sm border-b border-gray-200 shadow-sm">
       <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-24">
+
+        <div className="flex justify-between items-center h-14 sm:h-16 md:h-18 lg:h-20">
 
           {/* LOGO */}
-          <Link href="/" className="flex items-center gap-3 mt-2">
+          <Link href="/" className="flex items-center gap-2 sm:gap-3 shrink-0">
             <Image
               src="/New_Logo.png"
               alt="ScientisticEra Logo"
-              width={150}
-              height={80}
-              className="object-contain"
+              width={120}
+              height={60}
+              className="object-contain w-20 sm:w-28 md:w-32 lg:w-36"
               priority
             />
-            <div className="flex flex-col leading-tight">
-              <span className="text-2xl font-bold text-blue-600">
+            <div className="hidden sm:flex flex-col leading-tight">
+              <span className="text-base md:text-lg lg:text-xl font-bold text-blue-600">
                 ScientisticEra
               </span>
-              <span className="text-sm text-gray-600">Pvt Ltd</span>
+              <span className="text-xs text-gray-500">Pvt Ltd</span>
             </div>
           </Link>
 
           {/* DESKTOP NAV */}
-          <div className="hidden md:flex items-center space-x-1">
+          <div className="hidden lg:flex items-center gap-0.5 xl:gap-1">
             {navigation.map((item) =>
               item.dropdown ? (
                 <div key={item.name} className="relative group">
-
-                  {/* BUTTON */}
                   <button
-                    className={`px-4 py-2 rounded-lg font-medium transition-all flex items-center space-x-1 ${
+                    className={`px-2.5 xl:px-3 py-2 rounded-lg text-sm font-medium flex items-center gap-1 transition-all ${
                       isDropdownActive(item.dropdown)
-                        ? "bg-gradient-to-r from-blue-600 to-purple-600 text-white shadow-lg"
+                        ? "bg-gradient-to-r from-blue-600 to-purple-600 text-white"
                         : "text-gray-700 hover:bg-gray-100"
                     }`}
                   >
                     <span>{item.name}</span>
-                    <ChevronDown className="w-4 h-4" />
+                    <ChevronDown className="w-3.5 h-3.5 shrink-0" />
                   </button>
 
                   {/* DROPDOWN */}
-                  <div className="absolute left-0 top-full mt-1 w-60 opacity-0 invisible 
-                  group-hover:opacity-100 group-hover:visible 
-                  transition-all duration-200 z-50">
-
-                    {/* Invisible hover bridge */}
-                    <div className="absolute -top-3 left-0 w-full h-3"></div>
-
+                  <div className="absolute left-0 top-full mt-1 min-w-[220px] opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
+                    <div className="absolute -top-3 left-0 w-full h-3" />
                     <div className="bg-white rounded-xl shadow-xl border border-gray-200 py-2">
                       {item.dropdown.map((subItem) => (
                         <Link
                           key={subItem.name}
                           href={subItem.href}
-                          className={`block px-4 py-2 text-sm font-medium transition-all ${
+                          className={`block px-4 py-2 text-sm transition-colors ${
                             isActive(subItem.href)
-                              ? "bg-gradient-to-r from-blue-600 to-purple-600 text-white"
+                              ? "bg-blue-50 text-blue-600 font-medium"
                               : "text-gray-700 hover:bg-gray-100"
                           }`}
                         >
@@ -106,9 +99,9 @@ export function Header() {
                 <Link
                   key={item.name}
                   href={item.href}
-                  className={`px-4 py-2 rounded-lg font-medium transition-all ${
+                  className={`px-2.5 xl:px-3 py-2 rounded-lg text-sm font-medium transition-all ${
                     isActive(item.href)
-                      ? "bg-gradient-to-r from-blue-600 to-purple-600 text-white shadow-lg"
+                      ? "bg-gradient-to-r from-blue-600 to-purple-600 text-white"
                       : "text-gray-700 hover:bg-gray-100"
                   }`}
                 >
@@ -118,30 +111,31 @@ export function Header() {
             )}
           </div>
 
-          {/* MOBILE BUTTON */}
+          {/* MOBILE HAMBURGER */}
           <button
-            className="md:hidden p-2 rounded-lg hover:bg-gray-100"
+            className="lg:hidden p-2 rounded-lg hover:bg-gray-100 transition-colors"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            aria-label="Toggle menu"
           >
             {mobileMenuOpen ? (
-              <X className="w-6 h-6 text-gray-700" />
+              <X className="w-5 h-5 sm:w-6 sm:h-6 text-gray-700" />
             ) : (
-              <Menu className="w-6 h-6 text-gray-700" />
+              <Menu className="w-5 h-5 sm:w-6 sm:h-6 text-gray-700" />
             )}
           </button>
         </div>
 
         {/* MOBILE MENU */}
         {mobileMenuOpen && (
-          <div className="md:hidden py-4 space-y-2">
+          <div className="lg:hidden border-t border-gray-100 py-3 space-y-1 max-h-[75vh] overflow-y-auto">
             {navigation.map((item) =>
               item.dropdown ? (
-                <div key={item.name} className="space-y-2">
-                  <div
-                    className={`px-4 py-3 rounded-lg font-medium transition-all cursor-pointer ${
+                <div key={item.name}>
+                  <button
+                    className={`w-full px-4 py-3 font-medium rounded-lg flex justify-between items-center transition-colors ${
                       isDropdownActive(item.dropdown)
-                        ? "bg-gradient-to-r from-blue-600 to-purple-600 text-white"
-                        : "text-gray-700 bg-gray-50"
+                        ? "bg-blue-50 text-blue-600"
+                        : "text-gray-700 bg-gray-50 hover:bg-gray-100"
                     }`}
                     onClick={() =>
                       setActiveDropdown(
@@ -149,23 +143,25 @@ export function Header() {
                       )
                     }
                   >
-                    <div className="flex items-center justify-between">
-                      <span>{item.name}</span>
-                      <ChevronDown
-                        className={`w-4 h-4 transition-transform ${
-                          activeDropdown === item.name ? "rotate-180" : ""
-                        }`}
-                      />
-                    </div>
-                  </div>
+                    <span className="text-sm">{item.name}</span>
+                    <ChevronDown
+                      className={`w-4 h-4 transition-transform duration-200 ${
+                        activeDropdown === item.name ? "rotate-180" : ""
+                      }`}
+                    />
+                  </button>
 
                   {activeDropdown === item.name && (
-                    <div className="pl-4 space-y-2">
+                    <div className="ml-3 mt-1 space-y-0.5 border-l-2 border-blue-100 pl-3">
                       {item.dropdown.map((subItem) => (
                         <Link
                           key={subItem.name}
                           href={subItem.href}
-                          className="block px-4 py-2 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-100"
+                          className={`block px-3 py-2 text-sm rounded transition-colors ${
+                            isActive(subItem.href)
+                              ? "text-blue-600 font-medium bg-blue-50"
+                              : "text-gray-600 hover:bg-gray-100 hover:text-gray-900"
+                          }`}
                           onClick={() => setMobileMenuOpen(false)}
                         >
                           {subItem.name}
@@ -178,7 +174,11 @@ export function Header() {
                 <Link
                   key={item.name}
                   href={item.href}
-                  className="block px-4 py-3 rounded-lg font-medium text-gray-700 hover:bg-gray-100"
+                  className={`block px-4 py-3 text-sm rounded-lg font-medium transition-colors ${
+                    isActive(item.href)
+                      ? "bg-gradient-to-r from-blue-600 to-purple-600 text-white"
+                      : "text-gray-700 hover:bg-gray-100"
+                  }`}
                   onClick={() => setMobileMenuOpen(false)}
                 >
                   {item.name}
