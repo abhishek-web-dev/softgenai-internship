@@ -350,9 +350,9 @@ export default function OurStory() {
         prevEl: ".team-prev",
       }}
       onInit={(swiper) => {
-        // @ts-expect-error
+        // @ts-expect-error: ignore type issue temporarily
         swiper.params.navigation.prevEl = ".team-prev";
-        // @ts-expect-error
+        // @ts-expect-error: ignore type issue temporarily
         swiper.params.navigation.nextEl = ".team-next";
         swiper.navigation.init();
         swiper.navigation.update();
