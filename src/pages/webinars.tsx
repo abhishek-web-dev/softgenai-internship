@@ -19,6 +19,7 @@ export default function Webinars() {
     "/7th_national_webinar.png",
     "/8th_national_webinar.png",
     "/9th_national_webinar.png",
+    "/Upcoming_webinar.png"
   ];
 
   const webinarStats = [
@@ -72,17 +73,18 @@ export default function Webinars() {
           <div className="max-w-7xl mx-auto">
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-center mb-8 sm:mb-12 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
               Upcoming Webinars
+              <p>Coming Soon ...</p>
             </h2>
 
             <div className="flex flex-col items-center gap-4 sm:gap-6">
               {/* Upcoming Webinar Image - fully responsive */}
-              <div className="w-full max-w-5xl">
+              {/* <div className="w-full max-w-5xl">
                 <img
                   src="/Upcoming_webinar.png"
                   alt="Upcoming Webinar"
                   className="w-full h-auto object-contain rounded-xl shadow-xl border border-gray-200 bg-white p-2"
                 />
-              </div>
+              </div> */}
 
               {/* Register Button - full width on mobile, capped on desktop */}
               <Button

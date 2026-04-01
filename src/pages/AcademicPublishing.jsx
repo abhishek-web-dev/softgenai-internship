@@ -1,11 +1,8 @@
-"use client";
-
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import Link from "next/link";
-import { useState } from "react";
 
-/* ── inline styles ── */
+/* ── inline styles injected once ── */
 const marqueeStyle = `
   @keyframes marquee-scroll {
     0%   { transform: translateX(0); }
@@ -14,7 +11,7 @@ const marqueeStyle = `
   .marquee-track {
     display: flex;
     width: max-content;
-    animation: marquee-scroll 35s linear infinite;
+    animation: marquee-scroll 28s linear infinite;
   }
   .marquee-track:hover {
     animation-play-state: paused;
@@ -55,65 +52,36 @@ const books = [
   },
 ];
 
+/* 7 journal cards — swap src="" with real image paths when ready */
 const journals = [
-  { label: "Journal of Health Synapse",                                               img: "/SE_01.jpeg" },
-  { label: "Int. Journal of Research & Development in Pharmacy & Life Sciences",      img: "/SE_02.jpeg" },
-  { label: "Asian Journal of Pharmaceutical Research",                                img: "/SE_03.jpeg" },
-  { label: "Journal of Clinical & Diagnostic Research",                               img: "/SE_04.jpeg" },
-  { label: "International Journal of Ayurveda & Integrative Medicine",                img: "/SE_05.jpeg" },
-  { label: "Journal of Biomedical & Life Sciences",                                   img: "/SE_06.jpeg" },
-  { label: "Global Journal of Medical Innovation",                                    img: "/SE_07.jpeg" },
+  { label: "Journal of Health Synapse", bg: "from-blue-600 to-cyan-500", abbr: "JHS" },
+  { label: "Int. Journal of Research & Development in Pharmacy & Life Sciences", bg: "from-purple-600 to-pink-500", abbr: "IJRDPLS" },
+  { label: "Asian Journal of Pharmaceutical Research", bg: "from-emerald-600 to-teal-400", abbr: "AJPR" },
+  { label: "Journal of Clinical & Diagnostic Research", bg: "from-rose-600 to-orange-400", abbr: "JCDR" },
+  { label: "International Journal of Ayurveda & Integrative Medicine", bg: "from-amber-500 to-yellow-400", abbr: "IJAIM" },
+  { label: "Journal of Biomedical & Life Sciences", bg: "from-sky-600 to-blue-400", abbr: "JBLS" },
+  { label: "Global Journal of Medical Innovation", bg: "from-violet-600 to-indigo-400", abbr: "GJMI" },
 ];
 
+/* duplicate for seamless loop */
 const journalLoop = [...journals, ...journals];
-
-/* ─── LIGHTBOX ──────────────────────────────── */
-function Lightbox({ journal, onClose }) {
-  if (!journal) return null;
-  return (
-    <div
-      className="fixed inset-0 z-50 bg-black/80 flex items-center justify-center p-4"
-      onClick={onClose}
-    >
-      <div
-        className="relative max-w-lg w-full bg-white rounded-2xl overflow-hidden shadow-2xl"
-        onClick={(e) => e.stopPropagation()}
-      >
-        {/* Close button */}
-        <button
-          onClick={onClose}
-          className="absolute top-3 right-3 z-10 bg-black/50 hover:bg-black/70 text-white rounded-full w-8 h-8 flex items-center justify-center text-lg font-bold transition"
-        >
-          ✕
-        </button>
-
-        {/* Image */}
-        <img
-          src={journal.img}
-          alt={journal.label}
-          className="w-full object-contain max-h-[75vh]"
-        />
-
-        {/* Label */}
-        <div className="px-5 py-4 bg-white">
-          <p className="text-gray-800 font-semibold text-sm text-center">{journal.label}</p>
-        </div>
-      </div>
-    </div>
-  );
-}
 
 /* ─── BOOK CARD ─────────────────────────────── */
 function BookCard({ book, index }) {
   return (
     <div className="flex items-stretch gap-0 rounded-lg overflow-hidden shadow-md hover:shadow-xl hover:-translate-y-1 transition-all duration-300 group">
+      {/* spine */}
       <div className={`${book.spine} w-4 flex-shrink-0`} />
+
+      {/* cover */}
       <div className={`bg-gradient-to-br ${book.color} p-4 flex-1 flex flex-col justify-between min-h-[90px]`}>
         <span className="text-white/70 text-xs font-mono">#{String(index + 1).padStart(2, "0")}</span>
         <p className="text-white text-sm font-semibold leading-snug mt-2 group-hover:text-white/90 transition">
           {book.title}
         </p>
       </div>
+
+      {/* page-edge illusion */}
       <div className="flex flex-col gap-[2px] justify-center px-1 bg-gray-100">
         {Array.from({ length: 8 }).map((_, i) => (
           <div key={i} className="w-3 h-[2px] bg-gray-300 rounded-full" />
@@ -123,46 +91,44 @@ function BookCard({ book, index }) {
   );
 }
 
-/* ─── JOURNAL CARD ──────────────────────────── */
-function JournalCard({ j, onClick }) {
+/* ─── JOURNAL CARD (marquee item) ─────────────── */
+function JournalCard({ j }) {
   return (
     <div
-      className="flex-shrink-0 w-64 h-80 rounded-xl overflow-hidden shadow-lg mx-3 hover:scale-105 transition-transform duration-300 cursor-pointer relative group"
-      onClick={() => onClick(j)}
+      className={`flex-shrink-0 w-44 h-60 rounded-xl bg-gradient-to-br ${j.bg}
+        flex flex-col items-center justify-between p-4 shadow-lg mx-3
+        hover:scale-105 transition-transform duration-300 cursor-default`}
     >
-      <img
-        src={j.img}
-        alt={j.label}
-        className="w-full h-full object-cover"
-      />
+      {/* top stripe */}
+      <div className="w-full h-1.5 bg-white/30 rounded-full" />
 
-      {/* hover overlay */}
-      <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col items-center justify-center gap-2 p-3">
-        <span className="text-white text-2xl">🔍</span>
-        <p className="text-white text-[10px] font-medium leading-snug text-center">
-          {j.label}
-        </p>
+      {/* abbreviation badge */}
+      <div className="bg-white/20 rounded-lg px-3 py-2 text-center">
+        <span className="text-white font-black text-lg tracking-wide leading-none">{j.abbr}</span>
       </div>
+
+      {/* label */}
+      <p className="text-white/90 text-[10px] font-medium text-center leading-snug px-1">
+        {j.label}
+      </p>
+
+      {/* bottom bar */}
+      <div className="w-full h-1 bg-white/20 rounded-full" />
     </div>
   );
 }
 
 /* ─── PAGE ──────────────────────────────────── */
 export default function AcademicPublishing() {
-  const [selectedJournal, setSelectedJournal] = useState(null);
-
   return (
     <>
       <style>{marqueeStyle}</style>
       <Header />
 
-      {/* LIGHTBOX */}
-      <Lightbox journal={selectedJournal} onClose={() => setSelectedJournal(null)} />
-
       {/* HERO */}
       <section className="py-28 bg-gray-100 text-center">
         <div className="max-w-5xl mx-auto px-6">
-          <h1 className="text-3xl md:text-5xl font-bold bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent leading-[1.3] pb-2">
+          <h1 className="text-3xl md:text-5xl font-bold bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent">
             Academic Publishing Services
           </h1>
           <p className="mt-6 text-gray-700 text-lg max-w-3xl mx-auto">
@@ -187,6 +153,8 @@ export default function AcademicPublishing() {
       {/* PART 1 — BOOK PUBLISHING */}
       <section className="py-24 bg-white">
         <div className="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-12 items-center">
+
+          {/* LEFT */}
           <div>
             <h2 className="text-3xl font-bold mb-6 text-gray-900">Scholarly Book Publishing</h2>
             <p className="text-gray-600 mb-6">
@@ -212,6 +180,7 @@ export default function AcademicPublishing() {
             </Link>
           </div>
 
+          {/* RIGHT — BOOK CARDS */}
           <div className="flex flex-col gap-3">
             <p className="text-xs uppercase tracking-widest text-gray-400 font-semibold mb-1">
               Our Published Titles
@@ -220,6 +189,7 @@ export default function AcademicPublishing() {
               <BookCard key={book.id} book={book} index={i} />
             ))}
           </div>
+
         </div>
       </section>
 
@@ -227,19 +197,32 @@ export default function AcademicPublishing() {
       <section className="py-24 bg-gray-50">
         <div className="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-12 items-center">
 
-          {/* LEFT — SINGLE ROW MARQUEE */}
-          <div className="overflow-hidden rounded-2xl bg-gradient-to-br from-slate-900 to-slate-800 py-10 shadow-xl">
+          {/* LEFT — MARQUEE */}
+          <div className="overflow-hidden rounded-2xl bg-gradient-to-br from-slate-900 to-slate-800 py-8 shadow-xl">
             <p className="text-center text-xs uppercase tracking-widest text-white/40 mb-6 font-semibold">
               Our Journal Portfolio
             </p>
-            <div className="overflow-hidden">
+
+            {/* Row 1 — scroll left */}
+            <div className="overflow-hidden mb-4">
               <div className="marquee-track">
                 {journalLoop.map((j, i) => (
-                  <JournalCard key={i} j={j} onClick={setSelectedJournal} />
+                  <JournalCard key={i} j={j} />
                 ))}
               </div>
             </div>
-            <p className="text-center text-white/30 text-xs mt-5">Click any journal to view</p>
+
+            {/* Row 2 — scroll right (reverse) */}
+            <div className="overflow-hidden">
+              <div
+                className="marquee-track"
+                style={{ animationDirection: "reverse", animationDuration: "22s" }}
+              >
+                {[...journalLoop].reverse().map((j, i) => (
+                  <JournalCard key={i} j={j} />
+                ))}
+              </div>
+            </div>
           </div>
 
           {/* RIGHT CONTENT */}

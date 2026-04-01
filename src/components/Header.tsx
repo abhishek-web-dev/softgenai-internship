@@ -25,7 +25,7 @@ export function Header() {
     },
     { name: "Webinars", href: "/webinars" },
     { name: "Journals", href: "/journals" },
-    { name: "Publications", href: "/gallery" },
+    { name: "Gallery", href: "/gallery" },
     { name: "Pharmaceutics", href: "/medicine" },
     { name: "Contact", href: "/contact" },
   ];

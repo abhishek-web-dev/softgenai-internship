@@ -7,7 +7,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
-import { Linkedin, GraduationCap, Target, Eye, ChevronLeft, ChevronRight,Globe, Users, ShieldCheck } from "lucide-react";
+import { Linkedin, Mail, GraduationCap, Target, Eye, ChevronLeft, ChevronRight,Globe, Users, ShieldCheck,Star } from "lucide-react";
 import CountUp from "react-countup";
 import { useInView } from "react-intersection-observer";
 import Link from "next/link";
@@ -311,7 +311,8 @@ export default function OurStory() {
 
 </section>
 
-            <section className="py-12 sm:py-16 md:py-20 bg-white">
+
+<section className="py-12 sm:py-16 md:py-20 bg-white">
   <div className="max-w-7xl mx-auto px-4 sm:px-6">
 
     {/* Heading + Arrows */}
@@ -326,7 +327,7 @@ export default function OurStory() {
         </p>
       </div>
 
-      {/* Arrows — centered on mobile, right on desktop */}
+      {/* Arrows */}
       <div className="flex gap-3 justify-center sm:justify-end shrink-0">
         <button className="team-prev w-10 h-10 sm:w-12 sm:h-12 flex items-center justify-center rounded-full bg-gray-300 text-gray-700 hover:bg-gray-400 transition">
           <ChevronLeft size={20} />
@@ -349,9 +350,9 @@ export default function OurStory() {
         prevEl: ".team-prev",
       }}
       onInit={(swiper) => {
-        // @ts-expect-error swiper navigation type issue
+        // @ts-expect-error
         swiper.params.navigation.prevEl = ".team-prev";
-        // @ts-expect-error swiper navigation type issue
+        // @ts-expect-error
         swiper.params.navigation.nextEl = ".team-next";
         swiper.navigation.init();
         swiper.navigation.update();
@@ -364,12 +365,12 @@ export default function OurStory() {
     >
 
       {[
-        { src: "/Team_01.png", name: "Dr. Sudhanshu Kumar Jha", role: "Founder & Director", linkedin: "USERNAME" },
-        { src: "/Team_02.png", name: "Ms. Mansi Negi",          role: "Co-Founder & Head BD", linkedin: "USERNAME" },
-        { src: "/Team_03.png", name: "Mr. Vishwajeet",          role: "Chief Technology Officer", linkedin: "USERNAME" },
-        { src: "/Team_04.png", name: "Mr. Jaydeep S. Baghel",   role: "Research Head Operations", linkedin: "USERNAME" },
-        { src: "/Team_05.png", name: "Ms. Ishika Antil",        role: "Research Specialist (Intern)", linkedin: "USERNAME" },
-        { src: "/Team_06.png", name: "Ms. Himani Raj",          role: "Research (Intern)", linkedin: "USERNAME" },
+        { src: "/Team_01.png", name: "Dr. Sudhanshu Kumar Jha", role: "Founder & Director", linkedin: "sudhanshu-jha", email: "sudhanshu@example.com" },
+        { src: "/Team_02.png", name: "Ms. Mansi Negi", role: "Co-Founder & Head BD", linkedin: "mansi-negi", email: "mansi@example.com" },
+        { src: "/Team_03.png", name: "Mr. Vishwajeet", role: "Chief Technology Officer", linkedin: "vishwajeet", email: "vishwajeet@example.com" },
+        { src: "/Team_04.png", name: "Mr. Jaydeep S. Baghel", role: "Research Head Operations", linkedin: "jaydeep-baghel", email: "jaydeep@example.com" },
+        { src: "/Team_05.png", name: "Ms. Ishika Antil", role: "Research Specialist (Intern)", linkedin: "ishika-antil", email: "ishika@example.com" },
+        { src: "/Team_06.png", name: "Ms. Himani Raj", role: "Research (Intern)", linkedin: "himani-raj", email: "himani@example.com" },
       ].map((member, idx) => (
         <SwiperSlide key={idx}>
           <div className="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition">
@@ -384,18 +385,36 @@ export default function OurStory() {
 
             <div className="p-4 sm:p-5 flex justify-between items-center">
               <div>
-                <h3 className="font-semibold text-base sm:text-lg leading-snug">{member.name}</h3>
-                <p className="text-gray-500 text-xs sm:text-sm mt-0.5">{member.role}</p>
+                <h3 className="font-semibold text-base sm:text-lg leading-snug">
+                  {member.name}
+                </h3>
+                <p className="text-gray-500 text-xs sm:text-sm mt-0.5">
+                  {member.role}
+                </p>
               </div>
 
-              <a
-                href={`https://www.linkedin.com/in/${member.linkedin}`}
-  target="_blank"
-  rel="noopener noreferrer"
-  className="text-blue-600 hover:text-white hover:bg-blue-600 p-2 rounded-full transition shrink-0"
->
-  <Linkedin size={18} />
-</a>
+              {/* Icons */}
+              <div className="flex gap-2">
+
+                {/* LinkedIn */}
+                <a
+                  href={`https://www.linkedin.com/in/${member.linkedin}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-blue-600 hover:text-white hover:bg-blue-600 p-2 rounded-full transition"
+                >
+                  <Linkedin size={18} />
+                </a>
+
+                {/* Email */}
+                <a
+                  href={`mailto:${member.email}`}
+                  className="text-red-500 hover:text-white hover:bg-red-500 p-2 rounded-full transition"
+                >
+                  <Mail size={18} />
+                </a>
+
+              </div>
             </div>
 
           </div>
@@ -466,7 +485,7 @@ Become a Partner
 
 <h3 className="text-4xl font-bold text-blue-600">
 
-{inView && <CountUp end={10} duration={2} />}+
+{inView && <CountUp end={5} duration={0} />}+
 
 </h3>
 
@@ -480,7 +499,7 @@ Become a Partner
 
 <h3 className="text-4xl font-bold text-blue-600">
 
-{inView && <CountUp end={3} duration={2} />}+
+{inView && <CountUp end={3} duration={0} />}+
 
 </h3>
 
@@ -494,7 +513,7 @@ Become a Partner
 
 <h3 className="text-4xl font-bold text-blue-600">
 
-{inView && <CountUp end={35} duration={2} />}+
+{inView && <CountUp end={15} duration={2} />}+
 
 </h3>
 
@@ -508,7 +527,7 @@ Become a Partner
 
 <h3 className="text-4xl font-bold text-blue-600">
 
-{inView && <CountUp end={4} duration={2} />}+
+{inView && <CountUp end={2} duration={0} />}+
 
 </h3>
 
@@ -847,7 +866,64 @@ Start Partnership →
 </section>
 <div className="w-32 h-[2px] bg-white/30 mx-auto mt-12"></div>
 
+ {/* Testimonials Section */}
+        <section className="py-20 bg-gradient-to-br from-gray-50 to-blue-50 ml-5 mr-5">
+          <div className="container mx-auto px-4">
+            <div className="text-center mb-16">
+              <h2 className="text-4xl font-bold mb-4 text-gray-900">What Researchers Say</h2>
+              <p className="text-xl text-gray-600">
+                Trusted by researchers worldwide
+              </p>
+            </div>
+            
+            <div className="grid md:grid-cols-3 gap-8">
+              <Card className="p-8 bg-white border-2 border-gray-200 hover:border-blue-400 transition-all">
+                <div className="flex items-center mb-4">
+                  <Star className="w-5 h-5 text-yellow-400 fill-yellow-400" />
+                  <Star className="w-5 h-5 text-yellow-400 fill-yellow-400" />
+                  <Star className="w-5 h-5 text-yellow-400 fill-yellow-400" />
+                  <Star className="w-5 h-5 text-yellow-400 fill-yellow-400" />
+                  <Star className="w-5 h-5 text-yellow-400 fill-yellow-400" />
+                </div>
+                <p className="text-gray-700 mb-4">
+                  "ScientisticEra helped me publish my research in a reputed journal. Their guidance throughout the process was invaluable."
+                </p>
+                <div className="font-bold text-gray-900">Dr. Priya Sharma</div>
+                <div className="text-sm text-gray-600">Assistant Professor, IIT Delhi</div>
+              </Card>
 
+              <Card className="p-8 bg-white border-2 border-gray-200 hover:border-blue-400 transition-all">
+                <div className="flex items-center mb-4">
+                  <Star className="w-5 h-5 text-yellow-400 fill-yellow-400" />
+                  <Star className="w-5 h-5 text-yellow-400 fill-yellow-400" />
+                  <Star className="w-5 h-5 text-yellow-400 fill-yellow-400" />
+                  <Star className="w-5 h-5 text-yellow-400 fill-yellow-400" />
+                  <Star className="w-5 h-5 text-yellow-400 fill-yellow-400" />
+                </div>
+                <p className="text-gray-700 mb-4">
+                  "The webinars conducted by ScientisticEra are highly informative and practical. They've enhanced my research skills significantly."
+                </p>
+                <div className="font-bold text-gray-900">Rahul Verma</div>
+                <div className="text-sm text-gray-600">PhD Scholar, JNU</div>
+              </Card>
+
+              <Card className="p-8 bg-white border-2 border-gray-200 hover:border-blue-400 transition-all">
+                <div className="flex items-center mb-4">
+                  <Star className="w-5 h-5 text-yellow-400 fill-yellow-400" />
+                  <Star className="w-5 h-5 text-yellow-400 fill-yellow-400" />
+                  <Star className="w-5 h-5 text-yellow-400 fill-yellow-400" />
+                  <Star className="w-5 h-5 text-yellow-400 fill-yellow-400" />
+                  <Star className="w-5 h-5 text-yellow-400 fill-yellow-400" />
+                </div>
+                <p className="text-gray-700 mb-4">
+                  "Professional, efficient, and supportive. ScientisticEra made my conference participation seamless and productive."
+                </p>
+                <div className="font-bold text-gray-900">Dr. Anil Kumar</div>
+                <div className="text-sm text-gray-600">Senior Researcher, CSIR</div>
+              </Card>
+            </div>
+          </div>
+        </section>
 
       <Footer />
     </>

@@ -3,7 +3,7 @@ import { Footer } from "@/components/Footer";
 import Image from "next/image";
 import { Zap } from "lucide-react";
 import Link from "next/link";
-import { Lightbulb, BookOpen, Microscope, BarChart3, PenLine, MessageSquare , TrendingUp, FileCheck, GraduationCap } from "lucide-react";
+import { Lightbulb, BookOpen, Microscope, BarChart3, PenLine, MessageSquare , TrendingUp, FileCheck, GraduationCap,FileText,RefreshCcw } from "lucide-react";
 
 
 export default function Team() {
@@ -73,9 +73,17 @@ Submit Inquiry
 Most Popular Service
 </span>
 
-<h2 className="text-3xl font-bold mt-6">
-Research Paper Publication
-</h2>
+<div className="flex items-center gap-3 mt-6">
+  
+  <div className="bg-white/20 p-2 rounded-lg">
+    <BookOpen size={24} />
+  </div>
+
+  <h2 className="text-3xl font-bold">
+    Research Paper Publication
+  </h2>
+
+</div>
 
 <p className="mt-4 text-blue-100 leading-relaxed">
 Your breakthrough research deserves recognition in prestigious,
@@ -112,7 +120,7 @@ PhD Scholars | Academicians | Research Institutions | Industry Professionals
 
 {/* RIGHT SIDE */}
 
-<div className="bg-white p-10">
+{/* <div className="bg-white p-10">
 
 <h3 className="text-2xl font-bold text-gray-900 mb-6">
 What We Offer
@@ -178,6 +186,98 @@ Start Your Publication Journey →
 </Link>
 
 </div>
+</div> */}
+
+<div className="bg-white p-10">
+
+  <h3 className="text-2xl font-bold text-gray-900 mb-6">
+    What We Offer
+  </h3>
+
+  <div className="space-y-6">
+
+    {/* Item 1 */}
+    <div className="flex gap-4 items-start">
+      <div className="bg-blue-100 text-blue-600 p-3 rounded-lg">
+        <BookOpen size={20} />
+      </div>
+      <div>
+        <h4 className="font-semibold text-lg">
+          Journal Selection & Publication Strategy
+        </h4>
+        <p className="text-gray-600 text-sm">
+          Target journals based on impact factor, indexing, scope match,
+          acceptance probability, and review timelines.
+        </p>
+      </div>
+    </div>
+
+    {/* Item 2 */}
+    <div className="flex gap-4 items-start">
+      <div className="bg-purple-100 text-purple-600 p-3 rounded-lg">
+        <FileText size={20} />
+      </div>
+      <div>
+        <h4 className="font-semibold text-lg">
+          Manuscript Preparation & Technical Editing
+        </h4>
+        <p className="text-gray-600 text-sm">
+          Structural editing, language refinement, reference formatting
+          (APA/MLA/Vancouver), and journal compliance review.
+        </p>
+      </div>
+    </div>
+
+    {/* Item 3 */}
+    <div className="flex gap-4 items-start">
+      <div className="bg-pink-100 text-pink-600 p-3 rounded-lg">
+        <RefreshCcw size={20} />
+      </div>
+      <div>
+        <h4 className="font-semibold text-lg">
+          Peer Review & Revision Management
+        </h4>
+        <p className="text-gray-600 text-sm">
+          Reviewer response drafting, revision implementation,
+          and resubmission coordination.
+        </p>
+      </div>
+    </div>
+
+    {/* Item 4 */}
+    <div className="flex gap-4 items-start">
+      <div className="bg-green-100 text-green-600 p-3 rounded-lg">
+        <BarChart3 size={20} />
+      </div>
+      <div>
+        <h4 className="font-semibold text-lg">
+          Indexing & Visibility Support
+        </h4>
+        <p className="text-gray-600 text-sm">
+          Guidance for indexing visibility on Google Scholar,
+          ResearchGate, and academic databases.
+        </p>
+      </div>
+    </div>
+
+  </div>
+
+  <div className="mt-8">
+
+    <p className="text-sm text-gray-500">
+      Average Publication Time:
+      <span className="text-blue-600 font-semibold ml-2">
+        30-60 Days
+      </span>
+    </p>
+
+    <Link href="/contact">
+      <button className="mt-4 w-full bg-blue-600 text-white py-3 rounded-lg hover:bg-blue-700 transition">
+        Start Your Publication Journey →
+      </button>
+    </Link>
+
+  </div>
 </div>
 </div>
 </div>

@@ -119,7 +119,7 @@ const iprServices = [
       <section className="py-20 px-4 bg-gradient-to-br from-emerald-600 via-teal-600 to-cyan-600 text-white">
                 <div className="max-w-7xl mx-auto text-center">
                   <h1 className="text-4xl md:text-6xl font-bold mb-6">
-                    Intellectual Property Rights Services
+                     Intellectual Property Protection & Commercialization Services
                   </h1>
                   <p className="text-xl md:text-2xl text-white/90 max-w-3xl mx-auto mb-8">  
                   Intellectual Property Protection & Commercialization Services                   </p>
@@ -192,7 +192,7 @@ const iprServices = [
 
     {/* Heading */}
     <h2 className="text-3xl md:text-5xl font-bold mb-8 text-slate-900">
-      Our IPR Services
+      Our Publication And IPR Services
     </h2>
 
     {/* Slider */}
