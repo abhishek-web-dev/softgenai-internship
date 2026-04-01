@@ -39,33 +39,33 @@ export function Header() {
     <header className="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-sm border-b border-gray-200 shadow-sm">
       <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
-        <div className="flex justify-between items-center h-14 sm:h-16 md:h-18 lg:h-20">
+        <div className="flex justify-between items-center h-16 sm:h-18 lg:h-20">
 
-          {/* LOGO */}
+          {/* LOGO — kept same proportions as original, just capped at each breakpoint */}
           <Link href="/" className="flex items-center gap-2 sm:gap-3 shrink-0">
             <Image
               src="/New_Logo.png"
               alt="ScientisticEra Logo"
               width={120}
               height={60}
-              className="object-contain w-20 sm:w-28 md:w-32 lg:w-36"
+              className="object-contain w-16 sm:w-20 md:w-24 lg:w-28 xl:w-32"
               priority
             />
-            <div className="hidden sm:flex flex-col leading-tight">
-              <span className="text-base md:text-lg lg:text-xl font-bold text-blue-600">
+            <div className="flex flex-col leading-tight">
+              <span className="text-sm sm:text-base md:text-lg lg:text-xl font-bold text-blue-600 whitespace-nowrap">
                 ScientisticEra
               </span>
-              <span className="text-xs text-gray-500">Pvt Ltd</span>
+              <span className="text-[10px] sm:text-xs text-gray-500">Pvt Ltd</span>
             </div>
           </Link>
 
-          {/* DESKTOP NAV */}
+          {/* DESKTOP NAV — 1024px and above */}
           <div className="hidden lg:flex items-center gap-0.5 xl:gap-1">
             {navigation.map((item) =>
               item.dropdown ? (
                 <div key={item.name} className="relative group">
                   <button
-                    className={`px-2.5 xl:px-3 py-2 rounded-lg text-sm font-medium flex items-center gap-1 transition-all ${
+                    className={`px-2 xl:px-3 py-2 rounded-lg text-sm font-medium flex items-center gap-1 transition-all whitespace-nowrap ${
                       isDropdownActive(item.dropdown)
                         ? "bg-gradient-to-r from-blue-600 to-purple-600 text-white"
                         : "text-gray-700 hover:bg-gray-100"
@@ -99,7 +99,7 @@ export function Header() {
                 <Link
                   key={item.name}
                   href={item.href}
-                  className={`px-2.5 xl:px-3 py-2 rounded-lg text-sm font-medium transition-all ${
+                  className={`px-2 xl:px-3 py-2 rounded-lg text-sm font-medium transition-all whitespace-nowrap ${
                     isActive(item.href)
                       ? "bg-gradient-to-r from-blue-600 to-purple-600 text-white"
                       : "text-gray-700 hover:bg-gray-100"
@@ -111,9 +111,60 @@ export function Header() {
             )}
           </div>
 
-          {/* MOBILE HAMBURGER */}
+          {/* TABLET NAV — 768px to 1023px: all links visible, smaller text */}
+          <div className="hidden md:flex lg:hidden items-center gap-0.5">
+            {navigation.map((item) =>
+              item.dropdown ? (
+                <div key={item.name} className="relative group">
+                  <button
+                    className={`px-1.5 py-1.5 rounded-lg text-[11px] font-medium flex items-center gap-0.5 transition-all whitespace-nowrap ${
+                      isDropdownActive(item.dropdown)
+                        ? "bg-gradient-to-r from-blue-600 to-purple-600 text-white"
+                        : "text-gray-700 hover:bg-gray-100"
+                    }`}
+                  >
+                    <span>{item.name}</span>
+                    <ChevronDown className="w-3 h-3 shrink-0" />
+                  </button>
+
+                  <div className="absolute left-0 top-full mt-1 min-w-[200px] opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
+                    <div className="absolute -top-3 left-0 w-full h-3" />
+                    <div className="bg-white rounded-xl shadow-xl border border-gray-200 py-2">
+                      {item.dropdown.map((subItem) => (
+                        <Link
+                          key={subItem.name}
+                          href={subItem.href}
+                          className={`block px-4 py-2 text-xs transition-colors ${
+                            isActive(subItem.href)
+                              ? "bg-blue-50 text-blue-600 font-medium"
+                              : "text-gray-700 hover:bg-gray-100"
+                          }`}
+                        >
+                          {subItem.name}
+                        </Link>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              ) : (
+                <Link
+                  key={item.name}
+                  href={item.href}
+                  className={`px-1.5 py-1.5 rounded-lg text-[11px] font-medium transition-all whitespace-nowrap ${
+                    isActive(item.href)
+                      ? "bg-gradient-to-r from-blue-600 to-purple-600 text-white"
+                      : "text-gray-700 hover:bg-gray-100"
+                  }`}
+                >
+                  {item.name}
+                </Link>
+              )
+            )}
+          </div>
+
+          {/* MOBILE HAMBURGER — below 768px only */}
           <button
-            className="lg:hidden p-2 rounded-lg hover:bg-gray-100 transition-colors"
+            className="md:hidden p-2 rounded-lg hover:bg-gray-100 transition-colors"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             aria-label="Toggle menu"
           >
@@ -125,9 +176,9 @@ export function Header() {
           </button>
         </div>
 
-        {/* MOBILE MENU */}
+        {/* MOBILE MENU — below 768px only */}
         {mobileMenuOpen && (
-          <div className="lg:hidden border-t border-gray-100 py-3 space-y-1 max-h-[75vh] overflow-y-auto">
+          <div className="md:hidden border-t border-gray-100 py-3 space-y-1 max-h-[75vh] overflow-y-auto">
             {navigation.map((item) =>
               item.dropdown ? (
                 <div key={item.name}>
